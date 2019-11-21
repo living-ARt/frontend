@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2410D9A5E13FB188095B1837 /* Pods_capstone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4F2F4536BCA01851E26856F /* Pods_capstone.framework */; };
 		38D09364238724710042E670 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D09363238724710042E670 /* AppDelegate.swift */; };
 		38D09366238724710042E670 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D09365238724710042E670 /* ContentView.swift */; };
 		38D09368238724710042E670 /* Experience.rcproject in Sources */ = {isa = PBXBuildFile; fileRef = 38D09367238724710042E670 /* Experience.rcproject */; };
@@ -15,6 +16,8 @@
 		38D09370238724930042E670 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38D0936E238724930042E670 /* LaunchScreen.storyboard */; };
 		38D0937B238724940042E670 /* capstoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D0937A238724940042E670 /* capstoneTests.swift */; };
 		38D09386238724940042E670 /* capstoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D09385238724940042E670 /* capstoneUITests.swift */; };
+		447C6011653738DD442D8A1B /* Pods_capstone_capstoneUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A446AADC37C253BDFED0138 /* Pods_capstone_capstoneUITests.framework */; };
+		F60B22ABA52DA905AC18EAAC /* Pods_capstoneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0D386499C921D0926DD46EA /* Pods_capstoneTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19933B6950798BA622D23BBA /* Pods-capstone-capstoneUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-capstone-capstoneUITests.release.xcconfig"; path = "Target Support Files/Pods-capstone-capstoneUITests/Pods-capstone-capstoneUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1A446AADC37C253BDFED0138 /* Pods_capstone_capstoneUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_capstone_capstoneUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33C6FFD00649D7FD1576EA44 /* Pods-capstone-capstoneUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-capstone-capstoneUITests.debug.xcconfig"; path = "Target Support Files/Pods-capstone-capstoneUITests/Pods-capstone-capstoneUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		38D09360238724710042E670 /* capstone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = capstone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D09363238724710042E670 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38D09365238724710042E670 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +55,12 @@
 		38D09381238724940042E670 /* capstoneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = capstoneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		38D09385238724940042E670 /* capstoneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = capstoneUITests.swift; sourceTree = "<group>"; };
 		38D09387238724940042E670 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BD8323E1F8FE5F68DF5F47B /* Pods-capstone.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-capstone.debug.xcconfig"; path = "Target Support Files/Pods-capstone/Pods-capstone.debug.xcconfig"; sourceTree = "<group>"; };
+		9D2113CF35789C620A85F3CE /* Pods-capstone.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-capstone.release.xcconfig"; path = "Target Support Files/Pods-capstone/Pods-capstone.release.xcconfig"; sourceTree = "<group>"; };
+		A0D386499C921D0926DD46EA /* Pods_capstoneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_capstoneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A914500D4C8213B0FA07F9DA /* Pods-capstoneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-capstoneTests.debug.xcconfig"; path = "Target Support Files/Pods-capstoneTests/Pods-capstoneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4F2F4536BCA01851E26856F /* Pods_capstone.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_capstone.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F6886053E4C3DC8C1E2227EA /* Pods-capstoneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-capstoneTests.release.xcconfig"; path = "Target Support Files/Pods-capstoneTests/Pods-capstoneTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2410D9A5E13FB188095B1837 /* Pods_capstone.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F60B22ABA52DA905AC18EAAC /* Pods_capstoneTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +84,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				447C6011653738DD442D8A1B /* Pods_capstone_capstoneUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20B3F14EAACBACCB26699F0D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4F2F4536BCA01851E26856F /* Pods_capstone.framework */,
+				1A446AADC37C253BDFED0138 /* Pods_capstone_capstoneUITests.framework */,
+				A0D386499C921D0926DD46EA /* Pods_capstoneTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		38D09357238724700042E670 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +108,8 @@
 				38D09379238724940042E670 /* capstoneTests */,
 				38D09384238724940042E670 /* capstoneUITests */,
 				38D09361238724710042E670 /* Products */,
+				3C0E740E71B4608629ED4AC7 /* Pods */,
+				20B3F14EAACBACCB26699F0D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +163,20 @@
 			path = capstoneUITests;
 			sourceTree = "<group>";
 		};
+		3C0E740E71B4608629ED4AC7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9BD8323E1F8FE5F68DF5F47B /* Pods-capstone.debug.xcconfig */,
+				9D2113CF35789C620A85F3CE /* Pods-capstone.release.xcconfig */,
+				33C6FFD00649D7FD1576EA44 /* Pods-capstone-capstoneUITests.debug.xcconfig */,
+				19933B6950798BA622D23BBA /* Pods-capstone-capstoneUITests.release.xcconfig */,
+				A914500D4C8213B0FA07F9DA /* Pods-capstoneTests.debug.xcconfig */,
+				F6886053E4C3DC8C1E2227EA /* Pods-capstoneTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +184,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38D0938A238724940042E670 /* Build configuration list for PBXNativeTarget "capstone" */;
 			buildPhases = (
+				F56CC5F0EF4E07B3806C9241 /* [CP] Check Pods Manifest.lock */,
 				38D0935C238724710042E670 /* Sources */,
 				38D0935D238724710042E670 /* Frameworks */,
 				38D0935E238724710042E670 /* Resources */,
@@ -160,6 +202,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38D0938D238724940042E670 /* Build configuration list for PBXNativeTarget "capstoneTests" */;
 			buildPhases = (
+				8903ED1ECA35BD4D0B470F96 /* [CP] Check Pods Manifest.lock */,
 				38D09372238724940042E670 /* Sources */,
 				38D09373238724940042E670 /* Frameworks */,
 				38D09374238724940042E670 /* Resources */,
@@ -178,6 +221,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38D09390238724940042E670 /* Build configuration list for PBXNativeTarget "capstoneUITests" */;
 			buildPhases = (
+				9350C39EDAE4E05EB83CA384 /* [CP] Check Pods Manifest.lock */,
 				38D0937D238724940042E670 /* Sources */,
 				38D0937E238724940042E670 /* Frameworks */,
 				38D0937F238724940042E670 /* Resources */,
@@ -261,6 +305,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8903ED1ECA35BD4D0B470F96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-capstoneTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9350C39EDAE4E05EB83CA384 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-capstone-capstoneUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F56CC5F0EF4E07B3806C9241 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-capstone-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		38D0935C238724710042E670 /* Sources */ = {
@@ -432,6 +545,7 @@
 		};
 		38D0938B238724940042E670 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BD8323E1F8FE5F68DF5F47B /* Pods-capstone.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -451,6 +565,7 @@
 		};
 		38D0938C238724940042E670 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D2113CF35789C620A85F3CE /* Pods-capstone.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -470,6 +585,7 @@
 		};
 		38D0938E238724940042E670 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A914500D4C8213B0FA07F9DA /* Pods-capstoneTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -491,6 +607,7 @@
 		};
 		38D0938F238724940042E670 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6886053E4C3DC8C1E2227EA /* Pods-capstoneTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +629,7 @@
 		};
 		38D09391238724940042E670 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33C6FFD00649D7FD1576EA44 /* Pods-capstone-capstoneUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -531,6 +649,7 @@
 		};
 		38D09392238724940042E670 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19933B6950798BA622D23BBA /* Pods-capstone-capstoneUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
