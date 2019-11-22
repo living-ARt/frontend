@@ -2,12 +2,10 @@
 
 import React, { Component } from 'react';
 
-import { StyleSheet } from 'react-native';
 
 import {
   ViroVideo,
   ViroARScene,
-  ViroText,
   ViroARTrackingTargets,
   ViroARImageMarker,
   ViroConstants,
@@ -21,7 +19,8 @@ export default class HelloWorldSceneAR extends Component {
     // Set initial state here
     this.state = {
       text: "Initializing AR...",
-      // playVideo: false
+      paused: true,
+      visible: false
     };
 
     // bind 'this' to functions
@@ -33,8 +32,17 @@ export default class HelloWorldSceneAR extends Component {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
         <ViroARImageMarker target={"cypress"} onAnchorFound={this._onAnchorFound}>
-
         </ViroARImageMarker>
+        <ViroVideo
+          source={require('../assets/video/Cypresses.mp4')}
+          loop={true}
+          position={[0, 0, -7]}
+          scale={[5, 3, 3]}
+          animation={{ run: this.state.playVideo }}
+          paused={this.state.paused}
+          visible={this.state.visible}
+          opacity={0.9}
+        />
 
       </ViroARScene>
     );
@@ -52,12 +60,12 @@ export default class HelloWorldSceneAR extends Component {
   }
   _onAnchorFound() {
     console.log('Anchor found')
-    return <ViroVideo
-      source={require('../assets/video/Cypresses.mp4')}
-      loop={true}
-      position={[0, 0, -7]}
-      scale={[5, 3, 3]}
-    />
+    console.log('paused before:', this.state.paused)
+    this.setState({
+      paused: false,
+      visible: true
+    })
+    console.log('paused after:', this.state.paused)
   }
 }
 
@@ -69,14 +77,6 @@ ViroARTrackingTargets.createTargets({
   },
 });
 
-var styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-  },
-});
+
 
 module.exports = HelloWorldSceneAR;
