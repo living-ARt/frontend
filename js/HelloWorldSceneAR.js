@@ -9,6 +9,7 @@ import {
   ViroARTrackingTargets,
   ViroARImageMarker,
   ViroConstants,
+  ViroNode
 } from 'react-viro';
 
 export default class HelloWorldSceneAR extends Component {
@@ -18,31 +19,54 @@ export default class HelloWorldSceneAR extends Component {
 
     // Set initial state here
     this.state = {
+      isTracking: false,
       text: "Initializing AR...",
       paused: true,
-      visible: false
+      visible: false,
+      initialized: false,
+      position: [],
+      scale: []
     };
 
     // bind 'this' to functions
     this._onInitialized = this._onInitialized.bind(this);
     this._onAnchorFound = this._onAnchorFound.bind(this)
+    this.getARScene = this.getARScene.bind(this)
+    this.getNoTrackingUI = this.getNoTrackingUI.bind(this)
   }
+  getNoTrackingUI() {
+    const { isTracking, initialized } = this.state;
+    return (
+      <ViroText text={
+        initialized ? 'Initializing AR...'
+          : "No Tracking"
+      } />
+    )
+  }
+  getARScene() {
+    return (
+      <ViroNode>
+        <ViroARImageMarker target={"queen"} onAnchorFound={this._onAnchorFound}>
+          <ViroVideo
+            source={require('../assets/video/queen.mov')}
+            loop={true}
+            position={this.state.position}
+            scale={this.state.scale}
+            paused={this.state.paused}
+            visible={this.state.visible}
+            opacity={0.9}
+            //scalePivot={[0, 0, 0]}
+            dragType={"FixedToPlane"}
+          />
+        </ViroARImageMarker>
 
+      </ViroNode>
+    )
+  }
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
-        <ViroARImageMarker target={"cypress"} onAnchorFound={this._onAnchorFound}>
-        </ViroARImageMarker>
-        <ViroVideo
-          source={require('../assets/video/Cypresses.mp4')}
-          loop={true}
-          position={[0, 0, -7]}
-          scale={[5, 3, 3]}
-          animation={{ run: this.state.playVideo }}
-          paused={this.state.paused}
-          visible={this.state.visible}
-          opacity={0.9}
-        />
+        {this.state.isTracking ? this.getNoTrackingUI() : this.getARScene()}
 
       </ViroARScene>
     );
@@ -58,22 +82,23 @@ export default class HelloWorldSceneAR extends Component {
       // Handle loss of tracking
     }
   }
-  _onAnchorFound() {
+  _onAnchorFound(event) {
     console.log('Anchor found')
-    console.log('paused before:', this.state.paused)
     this.setState({
       paused: false,
-      visible: true
+      visible: true,
+      position: event.position,
+      scale: event.scale
     })
-    console.log('paused after:', this.state.paused)
+    console.log(event)
   }
 }
 
 ViroARTrackingTargets.createTargets({
-  "cypress": {
-    source: require('../assets/images/cypress.jpeg'),
+  "queen": {
+    source: require('../assets/images/queen.jpg'),
     orientation: "Up",
-    physicalWidth: 0.1 // real world width in meters
+    physicalWidth: 1// real world width in meters
   },
 });
 
