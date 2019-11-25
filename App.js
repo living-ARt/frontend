@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Main from './components/main'
-import ViroSample from './components/ar-vew'
+import ViroSample from './components/ar-view'
 import ListView from './components/list-view'
 import { Router, Scene, Stack } from 'react-native-router-flux'
 
