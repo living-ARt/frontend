@@ -2,38 +2,34 @@
 
 import React, { Component } from 'react';
 
+import { StyleSheet } from 'react-native';
 
 import {
-  ViroVideo,
   ViroARScene,
-  ViroARTrackingTargets,
-  ViroARImageMarker,
   ViroConstants,
-  ViroNode
+  ViroARTrackingTargets,
+  ViroARPlane,
+  ViroText,
+  ViroImage,
+  ViroFlexView,
+  ViroARImageMarker,
+  ViroAnimatedImage,
+  ViroAnimations,
+  ViroNode,
+
 } from 'react-viro';
 
-export default class HelloWorldSceneAR extends Component {
+export class HelloWorldSceneAR extends Component {
 
-  constructor() {
-    super();
-
-    // Set initial state here
-    this.state = {
-      isTracking: false,
-      text: "Initializing AR...",
-      paused: true,
-      visible: false,
-      initialized: false,
-      position: [],
-      scale: []
-    };
-
-    // bind 'this' to functions
-    this._onInitialized = this._onInitialized.bind(this);
-    this._onAnchorFound = this._onAnchorFound.bind(this)
-    this.getARScene = this.getARScene.bind(this)
-    this.getNoTrackingUI = this.getNoTrackingUI.bind(this)
+  state = {
+    isTracking: false,
+    initialized: false,
+    runAnimation: false,
+    position: [],
+    scale: [],
+    anchorId: null
   }
+
   getNoTrackingUI() {
     const { isTracking, initialized } = this.state;
     return (
@@ -43,65 +39,109 @@ export default class HelloWorldSceneAR extends Component {
       } />
     )
   }
+
+
+
   getARScene() {
     return (
-      <ViroNode>
-        <ViroARImageMarker target={"queen"} onAnchorFound={this._onAnchorFound}>
-          <ViroVideo
-            source={require('../assets/video/queen.mov')}
-            loop={true}
-            position={this.state.position}
-            scale={this.state.scale}
-            paused={this.state.paused}
-            visible={this.state.visible}
-            opacity={0.9}
-            //scalePivot={[0, 0, 0]}
-            dragType={"FixedToPlane"}
-          />
-        </ViroARImageMarker>
+      <ViroARPlane anchorId={this.state.anchorId}>
+        <ViroNode>
+          <ViroARImageMarker target={"queen"}
+            onAnchorFound={
+              (e) => {
+                console.log('anchor:', e)
+                this.setState({
+                  position: e.position,
+                  runAnimation: true,
+                  scale: e.scale,
+                  anchorId: e.anchorId
+                })
+              }}
+          >
 
-      </ViroNode>
+            <ViroNode key="card">
+              <ViroNode
+                opacity={0} position={[0, 0, 0]}
+                animation={{
+                  name: 'animateImage',
+                  run: this.state.runAnimation
+                }}
+              >
+                <ViroFlexView
+                  rotation={[-90, 0, 0]}
+                  height={0}
+                  width={0}
+
+                >
+                  <ViroFlexView
+                  >
+                    <ViroAnimatedImage
+                      height={.1}
+                      width={.1}
+                      length={0.01}
+                      position={this.state.position}
+                      loop={true}
+                      scaleToFit={this.state.scale}
+                      source={require('../assets/video/queen.gif')}
+                      dragType='FixedToPlane'
+                      dragPlane={{
+                        planePoint: [0, 0, 0],
+                        planeNormal: [0, 0, 0],
+                        maxDistance: 0
+                      }}
+                    />
+                  </ViroFlexView>
+                </ViroFlexView>
+              </ViroNode>
+              <ViroNode opacity={0} position={[0, 0, 0]}
+                animation={{
+                  name: 'animateViro',
+                  run: this.state.runAnimation
+                }}
+              >
+              </ViroNode>
+            </ViroNode>
+          </ViroARImageMarker >
+
+        </ViroNode >
+      </ViroARPlane>
     )
   }
+
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
         {this.state.isTracking ? this.getNoTrackingUI() : this.getARScene()}
-
       </ViroARScene>
     );
   }
 
-
-  _onInitialized(state, reason) {
+  _onInitialized = (state, reason) => {
     if (state == ViroConstants.TRACKING_NORMAL) {
-      this.setState({
-        text: "Hello World!"
-      });
+      isTracking: true
     } else if (state == ViroConstants.TRACKING_NONE) {
-      // Handle loss of tracking
+      isTracking: false
     }
   }
-  _onAnchorFound(event) {
-    console.log('Anchor found')
-    this.setState({
-      paused: false,
-      visible: true,
-      position: event.position,
-      scale: event.scale
-    })
-    console.log(event)
-  }
 }
+
 
 ViroARTrackingTargets.createTargets({
   "queen": {
     source: require('../assets/images/queen.jpg'),
     orientation: "Up",
-    physicalWidth: 1// real world width in meters
-  },
+    physicalWidth: 0.05 // real world width in meters
+  }
 });
 
-
+ViroAnimations.registerAnimations({
+  animateImage: {
+    properties: {
+      positionX: 0,
+      opacity: 1.0
+    },
+    duration: 500
+  },
+});
 
 module.exports = HelloWorldSceneAR;
