@@ -27,7 +27,10 @@ export class HelloWorldSceneAR extends Component {
     runAnimation: false,
     position: [],
     scale: [],
-    anchorId: null
+    anchorId: null,
+    height: null,
+    width: null,
+    length: null
   }
 
   getNoTrackingUI() {
@@ -44,67 +47,78 @@ export class HelloWorldSceneAR extends Component {
 
   getARScene() {
     return (
-      <ViroARPlane anchorId={this.state.anchorId}>
-        <ViroNode>
-          <ViroARImageMarker target={"queen"}
-            onAnchorFound={
-              (e) => {
-                console.log('anchor:', e)
-                this.setState({
-                  position: e.position,
-                  runAnimation: true,
-                  scale: e.scale,
-                  anchorId: e.anchorId
-                })
+
+      <ViroNode>
+        <ViroARPlane anchorId={this.state.anchorId}
+          onAnchorFound={
+            (e) => {
+              console.log('anchor:', e)
+              this.setState({
+                position: e.position,
+                runAnimation: true,
+                scale: e.scale,
+                anchorId: e.anchorId,
+                height: e.height,
+                width: e.width,
+                length: e.length
+              })
+            }}
+        >
+
+          <ViroNode key="card">
+            <ViroNode
+              opacity={0} position={this.state.position}
+              animation={{
+                name: 'animateImage',
+                run: this.state.runAnimation
               }}
-          >
-
-            <ViroNode key="card">
-              <ViroNode
-                opacity={0} position={[0, 0, 0]}
-                animation={{
-                  name: 'animateImage',
-                  run: this.state.runAnimation
-                }}
+            >
+              <ViroFlexView
+                position={this.state.position}
+                rotation={[0, 0, 0]}
+                height={this.state.height}
+                width={this.state.width}
+                length={this.state.length}
+              //scale={this.state.scale}
               >
-                <ViroFlexView
-                  rotation={[-90, 0, 0]}
-                  height={0}
-                  width={0}
-
-                >
-                  <ViroFlexView
-                  >
-                    <ViroAnimatedImage
-                      height={.1}
-                      width={.1}
-                      length={0.01}
-                      position={this.state.position}
-                      loop={true}
-                      scaleToFit={this.state.scale}
-                      source={require('../assets/video/queen.gif')}
-                      dragType='FixedToPlane'
-                      dragPlane={{
-                        planePoint: [0, 0, 0],
-                        planeNormal: [0, 0, 0],
-                        maxDistance: 0
-                      }}
-                    />
-                  </ViroFlexView>
-                </ViroFlexView>
-              </ViroNode>
-              <ViroNode opacity={0} position={[0, 0, 0]}
-                animation={{
-                  name: 'animateViro',
-                  run: this.state.runAnimation
-                }}
-              >
-              </ViroNode>
+                {/* <ViroFlexView
+                > */}
+                <ViroAnimatedImage
+                  height={this.state.height}
+                  width={this.state.width}
+                  length={this.state.length}
+                  position={this.state.position}
+                  loop={true}
+                  scale={this.state.scale}
+                  scaleToFit={this.state.scale}
+                  scaleToFill={this.state.scale}
+                  source={require('../assets/video/queen.gif')}
+                  dragType='FixedToPlane'
+                  dragPlane={{
+                    planePoint: [0, 0, 0],
+                    planeNormal: [0, 0, 0],
+                    maxDistance: 0
+                  }}
+                />
+                {/* </ViroFlexView> */}
+              </ViroFlexView>
             </ViroNode>
-          </ViroARImageMarker >
+            <ViroNode opacity={0}
+              scale={this.state.scale}
+              scaleToFit={this.state.scale}
+              scaleToFill={this.state.scale}
+              dragType="FixedToPlane"
+              animation={{
+                name: 'animateViro',
+                run: this.state.runAnimation
+              }}
+            >
+            </ViroNode>
+          </ViroNode>
+        </ViroARPlane >
 
-        </ViroNode >
-      </ViroARPlane>
+      </ViroNode >
+
     )
   }
 
@@ -128,9 +142,16 @@ export class HelloWorldSceneAR extends Component {
 
 ViroARTrackingTargets.createTargets({
   "queen": {
+    name: 'queen',
     source: require('../assets/images/queen.jpg'),
     orientation: "Up",
-    physicalWidth: 0.05 // real world width in meters
+    physicalWidth: 1 // real world width in meters
+  },
+  "cypress": {
+    name: 'cypress',
+    source: require('../assets/images/cypress.jpeg'),
+    orientation: "Up",
+    physicalWidth: 1 // real world width in meters
   }
 });
 
