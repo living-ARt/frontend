@@ -20,17 +20,14 @@ import {
 } from 'react-viro';
 
 export class HelloWorldSceneAR extends Component {
-
-  state = {
-    isTracking: false,
-    initialized: false,
-    runAnimation: false,
-    position: [],
-    scale: [],
-    anchorId: null,
-    height: null,
-    width: null,
-    length: null
+  constructor() {
+    super()
+    this.state = {
+      isTracking: false,
+      initialized: false,
+      runAnimation: false,
+    }
+    this._onInitialized = this._onInitialized.bind(this)
   }
 
   getNoTrackingUI() {
@@ -44,88 +41,36 @@ export class HelloWorldSceneAR extends Component {
   }
 
 
-
-  getARScene() {
+  render() {
     return (
+      <ViroARScene onTrackingUpdated={this._onInitialized} >
 
-      <ViroNode>
-        <ViroARPlane anchorId={this.state.anchorId}
+        <ViroARImageMarker target={"queen"}
           onAnchorFound={
             (e) => {
               console.log('anchor:', e)
               this.setState({
-                position: e.position,
                 runAnimation: true,
-                scale: e.scale,
-                anchorId: e.anchorId,
-                height: e.height,
-                width: e.width,
-                length: e.length
+                initialized: true,
+                isTracking: true
+
               })
             }}
         >
-
-          <ViroNode key="card">
-            <ViroNode
-              opacity={0} position={this.state.position}
-              animation={{
-                name: 'animateImage',
-                run: this.state.runAnimation
-              }}
-            >
-              <ViroFlexView
-                position={this.state.position}
-                rotation={[0, 0, 0]}
-                height={this.state.height}
-                width={this.state.width}
-                length={this.state.length}
-              //scale={this.state.scale}
-              >
-                {/* <ViroFlexView
-                > */}
-                <ViroAnimatedImage
-                  height={this.state.height}
-                  width={this.state.width}
-                  length={this.state.length}
-                  position={this.state.position}
-                  loop={true}
-                  scale={this.state.scale}
-                  scaleToFit={this.state.scale}
-                  scaleToFill={this.state.scale}
-                  source={require('../assets/video/queen.gif')}
-                  dragType='FixedToPlane'
-                  dragPlane={{
-                    planePoint: [0, 0, 0],
-                    planeNormal: [0, 0, 0],
-                    maxDistance: 0
-                  }}
-                />
-                {/* </ViroFlexView> */}
-              </ViroFlexView>
-            </ViroNode>
-            <ViroNode opacity={0}
-              scale={this.state.scale}
-              scaleToFit={this.state.scale}
-              scaleToFill={this.state.scale}
-              dragType="FixedToPlane"
-              animation={{
-                name: 'animateViro',
-                run: this.state.runAnimation
-              }}
-            >
-            </ViroNode>
-          </ViroNode>
-        </ViroARPlane >
-
-      </ViroNode >
-
-    )
-  }
-
-  render() {
-    return (
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
-        {this.state.isTracking ? this.getNoTrackingUI() : this.getARScene()}
+          <ViroAnimatedImage
+            scale={[1, 1, 1]}
+            visible={this.state.runAnimation}
+            opacity={0.99}
+            animation={{
+              name: 'animateImage',
+              run: this.state.runAnimation
+            }}
+            rotation={[-90, 0, 0]}
+            loop={true}
+            source={require('../assets/video/queen.gif')}
+            dragType="FixedToPlane"
+          />
+        </ViroARImageMarker >
       </ViroARScene>
     );
   }
@@ -151,14 +96,14 @@ ViroARTrackingTargets.createTargets({
     name: 'cypress',
     source: require('../assets/images/cypress.jpeg'),
     orientation: "Up",
-    physicalWidth: 1 // real world width in meters
+    physicalWidth: .1 // real world width in meters
   }
 });
 
 ViroAnimations.registerAnimations({
   animateImage: {
     properties: {
-      positionX: 0,
+      //positionX: 0,
       opacity: 1.0
     },
     duration: 500
