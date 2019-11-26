@@ -16,10 +16,13 @@ export default class ListView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Artwork available:</Text>
+
         <TouchableOpacity style={styles.button} onPress={this.goToARView}>
           <Text style={styles.btnText}>Open AR</Text>
         </TouchableOpacity>
+
+        <Text style={styles.header}>Animated Library:</Text>
+
       </View>
     )
   }
@@ -28,28 +31,26 @@ export default class ListView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#181C22',
+    paddingRight: 30,
+    paddingLeft: 30
   },
   header: {
-    fontSize: 40,
+    fontSize: 30,
     color: '#fff',
-  },
-  description: {
-    fontSize: 20,
-    color: '#fff',
+    paddingTop: 20,
+    alignSelf: 'flex-start'
   },
   button: {
     fontSize: 20,
     color: '#fff',
-    alignItems: 'center',
-    padding: 20,
+    padding: 10,
     backgroundColor: '#fff',
-    marginTop: 30,
-    borderRadius: 2
+    borderRadius: 2,
+    alignSelf: 'flex-end'
   },
   btnText: {
+    color: '#181C22',
     fontSize: 20
   }
 
