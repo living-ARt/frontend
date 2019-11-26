@@ -26,7 +26,7 @@ import {
  TODO: Insert your API key below
  */
 var sharedProps = {
-  apiKey:"API_KEY_HERE",
+  apiKey: "API_KEY_HERE",
 }
 
 // Sets the default scene you want for AR and VR
@@ -46,8 +46,8 @@ export default class ViroSample extends Component {
     super();
 
     this.state = {
-      navigatorType : defaultNavigatorType,
-      sharedProps : sharedProps
+      navigatorType: defaultNavigatorType,
+      sharedProps: sharedProps
     }
     this._getExperienceSelector = this._getExperienceSelector.bind(this);
     this._getARNavigator = this._getARNavigator.bind(this);
@@ -99,8 +99,8 @@ export default class ViroSample extends Component {
   // Returns the ViroARSceneNavigator which will start the AR experience
   _getARNavigator() {
     return (
-      <ViroARSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialARScene}} />
+      <ViroARSceneNavigator {...this.state.sharedProps} numberOfTrackedImages={1}
+        initialScene={{ scene: InitialARScene }} />
     );
   }
 
@@ -108,7 +108,7 @@ export default class ViroSample extends Component {
   _getVRNavigator() {
     return (
       <ViroVRSceneNavigator {...this.state.sharedProps}
-        initialScene={{scene: InitialVRScene}} onExitViro={this._exitViro}/>
+        initialScene={{ scene: InitialVRScene }} onExitViro={this._exitViro} />
     );
   }
 
@@ -117,7 +117,7 @@ export default class ViroSample extends Component {
   _getExperienceButtonOnPress(navigatorType) {
     return () => {
       this.setState({
-        navigatorType : navigatorType
+        navigatorType: navigatorType
       })
     }
   }
@@ -125,24 +125,26 @@ export default class ViroSample extends Component {
   // This function "exits" Viro by setting the navigatorType to UNSET.
   _exitViro() {
     this.setState({
-      navigatorType : UNSET
+      navigatorType: UNSET
     })
   }
 }
 
 var localStyles = StyleSheet.create({
+
   viroContainer :{
     flex : 1,
     backgroundColor: "#181C22",
   },
-  outer : {
-    flex : 1,
+  outer: {
+    flex: 1,
     flexDirection: 'row',
+
     alignItems:'center',
     backgroundColor: "#181C22",
   },
   inner: {
-    flex : 1,
+    flex: 1,
     flexDirection: 'column',
     alignItems:'center',
     backgroundColor: "#181C22",
@@ -150,9 +152,9 @@ var localStyles = StyleSheet.create({
   titleText: {
     paddingTop: 30,
     paddingBottom: 20,
-    color:'#fff',
-    textAlign:'center',
-    fontSize : 25
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 25
   },
   buttonText: {
     color:'#181C22',
@@ -171,14 +173,14 @@ var localStyles = StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 2
   },
-  exitButton : {
+  exitButton: {
     height: 50,
     width: 100,
-    paddingTop:10,
-    paddingBottom:10,
+    paddingTop: 10,
+    paddingBottom: 10,
     marginTop: 10,
     marginBottom: 10,
-    backgroundColor:'#68a0cf',
+    backgroundColor: '#68a0cf',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#fff',
