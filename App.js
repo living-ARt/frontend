@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {
+  StyleSheet
+} from 'react-native';
 import Main from './components/main'
 import ViroSample from './components/ar-view'
 import ListView from './components/list-view'
@@ -7,14 +10,29 @@ import { Router, Scene, Stack } from 'react-native-router-flux'
 export default class App extends Component {
   render() {
     return (
-      <Router>
-        <Stack key="root">
-          <Scene key="Main" component={Main} title="Main"/>
-          <Scene key="ARView" component={ViroSample} title="ARView"/>
-          <Scene key="ListView" component={ListView} title="List"/>
+      <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}>
+        <Stack key="root" >
+          <Scene key="Main" component={Main} hideNavBar={true}/>
+          <Scene key="ListView" component={ListView}/>
+          <Scene key="ARView" component={ViroSample} />
         </Stack>
       </Router>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  navBar: {
+    backgroundColor: '#181C22',
+    borderBottomColor: '#181C22'
+  },
+  navTitle: {
+    color: '#fff',
+    fontSize: 20,
+  },
+  backBtn: {
+    color: '#fff',
+    paddingLeft: 20
+  }
+
+})

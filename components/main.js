@@ -17,7 +17,8 @@ export default class Main extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.header}>Living ARt</Text>
-        <Text style={styles.description}>Description of app goes here</Text>
+        <Text style={styles.description}>See art like never before. Experience artwork come to life with AR.</Text>
+
         <TouchableOpacity style={styles.button} onPress={this.goToListView}>
           <Text style={styles.btnText}>Get Started</Text>
         </TouchableOpacity>
@@ -33,6 +34,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#181C22',
+    paddingRight: 30,
+    paddingLeft: 30
   },
   header: {
     fontSize: 40,
@@ -41,18 +44,19 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 20,
     color: '#fff',
+    marginTop: 30,
   },
   button: {
     fontSize: 20,
-    color: '#fff',
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#fff',
-    marginTop: 30,
+    marginTop: 80,
     borderRadius: 2
   },
   btnText: {
-    fontSize: 20
+    fontSize: 20,
+    color: '#181C22',
   }
 
 })
