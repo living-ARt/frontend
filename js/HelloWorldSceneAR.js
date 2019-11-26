@@ -19,7 +19,7 @@ import {
 
 } from 'react-viro';
 
-const targets = [{ name: 'queen', url: require('../assets/video/queen.gif') }, { name: "cypress", url: require('../assets/video/queen.gif') }]
+const targets = [{ name: 'queen', url: require('../assets/video/queen.gif') }, { name: "cypress", url: require('../assets/video/cypress.gif') }]
 
 export class HelloWorldSceneAR extends Component {
   constructor() {
@@ -110,7 +110,7 @@ ViroARTrackingTargets.createTargets({
     name: 'cypress',
     source: require('../assets/images/cypress.jpeg'),
     orientation: "Up",
-    physicalWidth: .1 // real world width in meters
+    physicalWidth: 1 // real world width in meters
   }
 });
 console.log('targets:', ViroARTrackingTargets)
