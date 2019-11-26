@@ -5,57 +5,108 @@ import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 
 import {
-  ViroVideo,
   ViroARScene,
-  ViroText,
   ViroConstants,
+  ViroARTrackingTargets,
+  ViroARPlane,
+  ViroText,
+  ViroImage,
+  ViroFlexView,
+  ViroARImageMarker,
+  ViroAnimatedImage,
+  ViroAnimations,
+  ViroNode,
+
 } from 'react-viro';
 
-export default class HelloWorldSceneAR extends Component {
-
+export class HelloWorldSceneAR extends Component {
   constructor() {
-    super();
-
-    // Set initial state here
+    super()
     this.state = {
-      text: "Initializing AR..."
-    };
-
-    // bind 'this' to functions
-    this._onInitialized = this._onInitialized.bind(this);
+      isTracking: false,
+      initialized: false,
+      runAnimation: false,
+    }
+    this._onInitialized = this._onInitialized.bind(this)
   }
+
+  getNoTrackingUI() {
+    const { isTracking, initialized } = this.state;
+    return (
+      <ViroText text={
+        initialized ? 'Initializing AR...'
+          : "No Tracking"
+      } />
+    )
+  }
+
 
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized} >
-        <ViroVideo
-          source={require('../assets/video/Cypresses.mp4')}
-          loop={true}
-          position={[0, 0, -7]}
-          scale={[5, 3, 3]}
-        />
+
+        <ViroARImageMarker target={"queen"}
+          onAnchorFound={
+            (e) => {
+              console.log('anchor:', e)
+              this.setState({
+                runAnimation: true,
+                initialized: true,
+                isTracking: true
+
+              })
+            }}
+        >
+          <ViroAnimatedImage
+            scale={[1, 1, 1]}
+            visible={this.state.runAnimation}
+            opacity={0.99}
+            animation={{
+              name: 'animateImage',
+              run: this.state.runAnimation
+            }}
+            rotation={[-90, 0, 0]}
+            loop={true}
+            source={require('../assets/video/queen.gif')}
+            dragType="FixedToPlane"
+          />
+        </ViroARImageMarker >
       </ViroARScene>
     );
   }
 
-  _onInitialized(state, reason) {
+  _onInitialized = (state, reason) => {
     if (state == ViroConstants.TRACKING_NORMAL) {
-      this.setState({
-        text: "Hello World!"
-      });
+      isTracking: true
     } else if (state == ViroConstants.TRACKING_NONE) {
-      // Handle loss of tracking
+      isTracking: false
     }
   }
 }
 
-var styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 30,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
+
+ViroARTrackingTargets.createTargets({
+  "queen": {
+    name: 'queen',
+    source: require('../assets/images/queen.jpg'),
+    orientation: "Up",
+    physicalWidth: 1 // real world width in meters
+  },
+  "cypress": {
+    name: 'cypress',
+    source: require('../assets/images/cypress.jpeg'),
+    orientation: "Up",
+    physicalWidth: .1 // real world width in meters
+  }
+});
+
+ViroAnimations.registerAnimations({
+  animateImage: {
+    properties: {
+      //positionX: 0,
+      opacity: 1.0
+    },
+    duration: 500
   },
 });
 
