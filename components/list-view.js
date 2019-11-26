@@ -11,7 +11,7 @@ import { Actions } from 'react-native-router-flux';
 export default class ListView extends Component {
   constructor(props){
     super(props)
-    this.museumId = this.props.museumId
+    this.id = this.props.data
     this.state = {
       allArtwork: []
     }
@@ -22,7 +22,7 @@ export default class ListView extends Component {
   }
 
   async componentDidMount (){
-    const {data} = await axios.get(`https://living-art-capstone.herokuapp.com/api/museum/1/artwork`)
+    const {data} = await axios.get(`https://living-art-capstone.herokuapp.com/api/museum/${this.id}/artwork`)
     this.setState({
       allArtwork: data
     })
