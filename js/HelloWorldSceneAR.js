@@ -6,6 +6,7 @@ import { StyleSheet } from 'react-native';
 
 import {
   ViroARScene,
+  ViroARSceneNavigator,
   ViroConstants,
   ViroARTrackingTargets,
   ViroARPlane,
@@ -19,7 +20,7 @@ import {
 
 } from 'react-viro';
 
-const targets = [{ name: 'queen', url: require('../assets/video/queen.gif') }, { name: "cypress", url: require('../assets/video/cypress.gif') }]
+const targets = [{ name: "cypress", url: require('../assets/video/cypress.gif') }, { name: 'queen', url: require('../assets/video/queen.gif') }]
 
 export class HelloWorldSceneAR extends Component {
   constructor() {
@@ -45,7 +46,8 @@ export class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
+      <ViroARScene
+        onTrackingUpdated={this._onInitialized} >
         {targets.map(imageTarget => {
           return (<ViroARImageMarker target={imageTarget.name}
             onAnchorFound={
@@ -58,26 +60,19 @@ export class HelloWorldSceneAR extends Component {
 
                 })
               }}
-
-            onAnchorRemoved={() => {
-              this.setState({
-                runAnimation: false,
-                initialized: false,
-                isTracking: false
-
-              })
-            }}
           >
             <ViroAnimatedImage
-              scale={[1, 1, 1]}
+              resizeMode={'StretchToFill'}
+              scale={[0.1, 0.1, 0]}
               visible={this.state.runAnimation}
               opacity={0.99}
               animation={{
                 name: 'animateImage',
-                run: this.state.runAnimation
+                run: this.state.runAnimation,
+                loop: true,
               }}
-              rotation={[-90, 0, 0]}
               loop={true}
+              rotation={[-90, 0, 0]}
               source={imageTarget.url}
               dragType="FixedToPlane"
             />
@@ -85,6 +80,7 @@ export class HelloWorldSceneAR extends Component {
         })}
 
       </ViroARScene >
+
     );
   }
 
@@ -99,28 +95,28 @@ export class HelloWorldSceneAR extends Component {
 
 
 ViroARTrackingTargets.createTargets({
-  "queen": {
-    name: 'queen',
-    source: require('../assets/images/queen.jpg'),
-    orientation: "Up",
-    type: 'Image',
-    physicalWidth: 1 // real world width in meters
-  },
   "cypress": {
     name: 'cypress',
-    source: require('../assets/images/cypress.jpeg'),
+    source: require('../assets/images/cypress.jpg'),
     orientation: "Up",
-    physicalWidth: 1 // real world width in meters
-  }
+    type: 'Image',
+    physicalWidth: .1 // real world width in meters
+  },
+  "queen": {
+    name: 'queen',
+    source: require('../assets/images/cypress.jpg'),
+    orientation: "Up",
+    type: 'Image',
+    physicalWidth: .1 // real world width in meters
+  },
+
 });
-console.log('targets:', ViroARTrackingTargets)
 ViroAnimations.registerAnimations({
   animateImage: {
     properties: {
-      //positionX: 0,
       opacity: 1.0
     },
-    duration: 500
+    duration: 5000
   },
 });
 
