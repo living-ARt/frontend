@@ -16,6 +16,8 @@ import {
   ViroAnimatedImage,
   ViroAnimations,
   ViroNode,
+  ViroButton,
+  ViroSound
 
 } from 'react-viro';
 
@@ -26,6 +28,7 @@ export class HelloWorldSceneAR extends Component {
       isTracking: false,
       initialized: false,
       runAnimation: false,
+      buttonStateTag: "onTap"
     }
     this._onInitialized = this._onInitialized.bind(this)
   }
@@ -38,6 +41,11 @@ export class HelloWorldSceneAR extends Component {
           : "No Tracking"
       } />
     )
+  }
+  _onButtonTap() {
+      this.setState({
+          buttonStateTag: "onTap"
+      });
   }
 
 
@@ -71,7 +79,26 @@ export class HelloWorldSceneAR extends Component {
             dragType="FixedToPlane"
           />
         </ViroARImageMarker >
-      </ViroARScene>
+
+        <ViroButton
+          source={require("../assets/icons/play.png")}
+          tapSource={require("../assets/icons/pause.png")}
+          position={[0, -9, -15]}
+          height={2}
+          width={3}
+          onTap={this._onButtonTap}
+        />
+
+        <ViroSound
+          source={require("../assets/sound/cypress.m4a")}
+          loop={false}
+          paused={false}
+          volume={1.0}
+          onFinish={this.onFinishSound}
+        />
+        </ViroARScene>
+
+
     );
   }
 
