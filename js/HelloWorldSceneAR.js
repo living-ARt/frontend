@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 
 import {
   ViroARScene,
@@ -31,9 +31,11 @@ export class HelloWorldSceneAR extends Component {
       isTracking: false,
       initialized: false,
       runAnimation: false,
-      buttonStateTag: "onTap"
+      audioPaused: true
     }
     this._onInitialized = this._onInitialized.bind(this)
+    this._onClick = this._onClick.bind(this)
+    // this._onTouch = this._onTouch.bind(this)
   }
 
   getNoTrackingUI() {
@@ -45,79 +47,42 @@ export class HelloWorldSceneAR extends Component {
       } />
     )
   }
-  _onButtonTap() {
-      this.setState({
-          buttonStateTag: "onTap"
-      });
+  // _onTouch()  {
+  //   this.setState({
+  //     audioPaused: !this.state.audioPaused
+  //   })
+  //  }
+
+  //  audioPaused() {
+  //   this.setState({
+  //     videoPaused: !this.state.audioPaused,
+  //   })
+  // }
+
+  _onClick(position, source) {
+    this.setState({
+      videoPaused: !this.state.audioPaused,
+    })
   }
 
 
   render() {
     return (
-<<<<<<< HEAD
-      <ViroARScene onTrackingUpdated={this._onInitialized} >
-
-        <ViroARImageMarker target={"queen"}
-          onAnchorFound={
-            (e) => {
-              console.log('anchor:', e)
-              this.setState({
-                runAnimation: true,
-                initialized: true,
-                isTracking: true
-
-              })
-            }}
-        >
-          <ViroAnimatedImage
-            scale={[1, 1, 1]}
-            visible={this.state.runAnimation}
-            opacity={0.99}
-            animation={{
-              name: 'animateImage',
-              run: this.state.runAnimation
-            }}
-            rotation={[-90, 0, 0]}
-            loop={true}
-            source={require('../assets/video/queen.gif')}
-            dragType="FixedToPlane"
-          />
-        </ViroARImageMarker >
-
-        <ViroButton
-          source={require("../assets/icons/play.png")}
-          tapSource={require("../assets/icons/pause.png")}
-          position={[0, -9, -15]}
-          height={2}
-          width={3}
-          onTap={this._onButtonTap}
-        />
-
-        <ViroSound
-          source={require("../assets/sound/cypress.m4a")}
-          loop={false}
-          paused={false}
-          volume={1.0}
-          onFinish={this.onFinishSound}
-        />
-        </ViroARScene>
-
-=======
-      <ViroARScene
+        <ViroARScene
         onTrackingUpdated={this._onInitialized} >
         {targets.map(imageTarget => {
-          return (<ViroARImageMarker target={imageTarget.name}
-            onAnchorFound={
-              (e) => {
-                console.log('anchor:', e)
-                this.setState({
-                  runAnimation: true,
-                  initialized: true,
-                  isTracking: true
+          return (
+            <ViroARImageMarker target={imageTarget.name}
+              onAnchorFound={
+                (e) => {
+                  this.setState({
+                    runAnimation: true,
+                    initialized: true,
+                    isTracking: true
+                  })
+                }}
+            >
 
-                })
-              }}
-          >
             <ViroAnimatedImage
               resizeMode={'StretchToFill'}
               scale={[0.1, 0.1, 0]}
@@ -132,12 +97,21 @@ export class HelloWorldSceneAR extends Component {
               rotation={[-90, 0, 0]}
               source={imageTarget.url}
               dragType="FixedToPlane"
+              onClick={this._onClick}
             />
-          </ViroARImageMarker >)
+
+            </ViroARImageMarker >
+          )
         })}
 
+        <ViroSound
+          source={require("../assets/sound/cypress.m4a")}
+          loop={false}
+          paused={this.state.audioPaused}
+          volume={1.0}
+        />
+
       </ViroARScene >
->>>>>>> 22e3b04f79ad5aaf07cb2abea8c0876196248275
 
     );
   }
@@ -177,5 +151,7 @@ ViroAnimations.registerAnimations({
     duration: 5000
   },
 });
+
+
 
 module.exports = HelloWorldSceneAR;

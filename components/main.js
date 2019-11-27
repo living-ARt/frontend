@@ -7,6 +7,8 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
+
 export default class Main extends Component {
 
   goToListView() {
