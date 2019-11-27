@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+// import DetailedView from "./detailed-view"
 
 export default class ListView extends Component {
   constructor(props){
@@ -19,6 +20,10 @@ export default class ListView extends Component {
 
   goToARView() {
     Actions.ARView();
+  }
+
+  goToDetailedView(id){
+    Actions.DetailedView(id)
   }
 
   async componentDidMount (){
@@ -41,7 +46,7 @@ export default class ListView extends Component {
         {/* this renders a list of the current art at the selected museum */}
         {this.state.allArtwork.map(currentArt => {
           return(
-            <Text style={styles.body} key={currentArt.id}>{currentArt.name}</Text>
+            <Text onPress={() => this.goToDetailedView(currentArt.id)} style={styles.body} key={currentArt.id}>{currentArt.name}</Text>
           )
         })}
 
