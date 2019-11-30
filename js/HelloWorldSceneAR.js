@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, TouchableHighlight, Text, View, Image } from 'react-native';
 
 import {
   ViroARScene,
@@ -35,7 +35,6 @@ export class HelloWorldSceneAR extends Component {
     }
     this._onInitialized = this._onInitialized.bind(this)
     this._onClick = this._onClick.bind(this)
-    // this._onTouch = this._onTouch.bind(this)
   }
 
   getNoTrackingUI() {
@@ -47,27 +46,16 @@ export class HelloWorldSceneAR extends Component {
       } />
     )
   }
-  // _onTouch()  {
-  //   this.setState({
-  //     audioPaused: !this.state.audioPaused
-  //   })
-  //  }
-
-  //  audioPaused() {
-  //   this.setState({
-  //     videoPaused: !this.state.audioPaused,
-  //   })
-  // }
-
-  _onClick(position, source) {
-    this.setState({
-      videoPaused: !this.state.audioPaused,
-    })
+  _onClick() {
+    console.log("image clicked!");
+    // this.setState({
+    //   audioPaused: false
+    // })
   }
-
 
   render() {
     return (
+      // <View>
         <ViroARScene
         onTrackingUpdated={this._onInitialized} >
         {targets.map(imageTarget => {
@@ -100,16 +88,16 @@ export class HelloWorldSceneAR extends Component {
               onClick={this._onClick}
             />
 
+            <ViroSound
+              source={require("../assets/sound/cypress.m4a")}
+              loop={false}
+              paused={this.state.audioPaused}
+              volume={1.0}
+            />
+
             </ViroARImageMarker >
           )
         })}
-
-        <ViroSound
-          source={require("../assets/sound/cypress.m4a")}
-          loop={false}
-          paused={this.state.audioPaused}
-          volume={1.0}
-        />
 
       </ViroARScene >
 
