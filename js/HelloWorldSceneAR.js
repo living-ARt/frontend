@@ -2,8 +2,6 @@
 
 import React, { Component } from 'react';
 
-import { StyleSheet, TouchableHighlight, Text, View, Image } from 'react-native';
-
 import {
   ViroARScene,
   ViroARSceneNavigator,
@@ -17,7 +15,6 @@ import {
   ViroAnimatedImage,
   ViroAnimations,
   ViroNode,
-  ViroButton,
   ViroSound
 
 } from 'react-viro';
