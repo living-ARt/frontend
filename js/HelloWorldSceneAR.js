@@ -97,16 +97,18 @@ export class HelloWorldSceneAR extends Component {
           )
         })}
 
+        {/* handles text on AR view page */}
         <ViroFlexView
-          height={1}
+          style={{flexDirection: 'row', padding: .15, alignSelf: 'center'}}
+          height={.80}
           width={3.25}
           position={[.5,-3,-5]}
-          // position={[0,-3,-5]}
+          rotation={[0, 0, 0]}
           backgroundColor={'#00979A'}
           dragType="FixedToPlane"
           >
           <ViroText
-            style={{flex: 1, fontFamily:"Arial", fontSize:20, margin: .25}}
+            style={{flex: 1, fontFamily:"Arial", fontSize:20, justifyContent: 'center'}}
             text="Tap animation and swipe right to play and pause audio."
             textAlign="center"
             textLineBreakMode="CharWrap"
@@ -116,8 +118,9 @@ export class HelloWorldSceneAR extends Component {
           />
         </ViroFlexView>
 
+        {/* sound component */}
         <ViroSound
-          source={require('../assets/sound/cypress.m4a')}
+          source={'cypressSound'}
           muted={false}
           loop={false}
           paused={this.state.audioPaused}
@@ -157,7 +160,10 @@ ViroAnimations.registerAnimations({
   },
 });
 
-
+// Viro prefetch's each sound & stores it locally for quick access, asynchronously.
+ViroSound.preloadSounds({
+  "cypressSound" : "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a"
+});
 
 
 module.exports = HelloWorldSceneAR;
