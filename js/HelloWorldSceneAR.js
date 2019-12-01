@@ -37,7 +37,6 @@ export class HelloWorldSceneAR extends Component {
     this._onClick = this._onClick.bind(this)
   }
 
-
   getNoTrackingUI() {
     const { isTracking, initialized } = this.state;
     return (
@@ -55,11 +54,10 @@ export class HelloWorldSceneAR extends Component {
       isTracking: false
     }
   }
-  _onClick() {
-    console.log("image clicked!");
-    // this.setState({
-    //   audioPaused: false
-    // })
+  _onClick(position, source) {
+    this.setState({
+      audioPaused: !this.state.audioPaused
+    })
   }
 
   render() {
@@ -95,17 +93,36 @@ export class HelloWorldSceneAR extends Component {
               dragType="FixedToPlane"
               onClick={this._onClick}
             />
-
-            <ViroSound
-              source={require("../assets/sound/cypress.m4a")}
-              loop={false}
-              paused={false}
-              volume={1.0}
-            />
-
             </ViroARImageMarker >
           )
         })}
+
+        <ViroFlexView
+          height={1}
+          width={3.25}
+          position={[.5,-3,-5]}
+          // position={[0,-3,-5]}
+          backgroundColor={'#00979A'}
+          dragType="FixedToPlane"
+          >
+          <ViroText
+            style={{flex: 1, fontFamily:"Arial", fontSize:20, margin: .25}}
+            text="Tap animation and swipe right to play and pause audio."
+            textAlign="center"
+            textLineBreakMode="CharWrap"
+            textClipMode="None"
+            color="#fff"
+            height={2}
+          />
+        </ViroFlexView>
+
+        <ViroSound
+          source={require('../assets/sound/cypress.m4a')}
+          muted={false}
+          loop={false}
+          paused={this.state.audioPaused}
+          volume={1.0}
+        />
 
       </ViroARScene >
 
@@ -139,6 +156,7 @@ ViroAnimations.registerAnimations({
     duration: 5000
   },
 });
+
 
 
 
