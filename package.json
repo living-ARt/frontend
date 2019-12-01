@@ -8,7 +8,11 @@
     "test": "jest"
   },
   "dependencies": {
+<<<<<<< HEAD
     "events": "^3.0.0",
+=======
+    "axios": "^0.19.0",
+>>>>>>> fa916f9c96382a714667a1afa0be92fb8feff3b8
     "ngrok": "^3.2.5",
     "react": "16.8.3",
     "react-native": "0.59.9",
