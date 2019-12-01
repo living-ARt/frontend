@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   button: {
-    fontSize: 20,
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#fff',

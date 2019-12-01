@@ -37,6 +37,7 @@ export class HelloWorldSceneAR extends Component {
     this._onClick = this._onClick.bind(this)
   }
 
+
   getNoTrackingUI() {
     const { isTracking, initialized } = this.state;
     return (
@@ -45,6 +46,14 @@ export class HelloWorldSceneAR extends Component {
           : "No Tracking"
       } />
     )
+  }
+
+  _onInitialized = (state, reason) => {
+    if (state == ViroConstants.TRACKING_NORMAL) {
+      isTracking: true
+    } else if (state == ViroConstants.TRACKING_NONE) {
+      isTracking: false
+    }
   }
   _onClick() {
     console.log("image clicked!");
@@ -55,7 +64,6 @@ export class HelloWorldSceneAR extends Component {
 
   render() {
     return (
-      // <View>
         <ViroARScene
         onTrackingUpdated={this._onInitialized} >
         {targets.map(imageTarget => {
@@ -91,7 +99,7 @@ export class HelloWorldSceneAR extends Component {
             <ViroSound
               source={require("../assets/sound/cypress.m4a")}
               loop={false}
-              paused={this.state.audioPaused}
+              paused={false}
               volume={1.0}
             />
 
@@ -102,14 +110,6 @@ export class HelloWorldSceneAR extends Component {
       </ViroARScene >
 
     );
-  }
-
-  _onInitialized = (state, reason) => {
-    if (state == ViroConstants.TRACKING_NORMAL) {
-      isTracking: true
-    } else if (state == ViroConstants.TRACKING_NONE) {
-      isTracking: false
-    }
   }
 }
 
