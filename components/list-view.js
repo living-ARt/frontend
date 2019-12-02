@@ -10,6 +10,7 @@ import {
   ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+// import DetailedView from "./detailed-view"
 
 export default class ListView extends Component {
   constructor(props){
@@ -22,6 +23,10 @@ export default class ListView extends Component {
 
   goToARView() {
     Actions.ARView();
+  }
+
+  goToDetailedView(id){
+    Actions.DetailedView(id)
   }
 
   async componentDidMount (){
@@ -46,7 +51,6 @@ export default class ListView extends Component {
         {this.state.allArtwork.map(currentArt => {
           return(
             <View key={currentArt.id} style={styles.artCard}>
-
               <View style={styles.artCardLeft}>
                 <Image source={{uri: currentArt.imageUrl}} style={styles.cardImage} />
               </View>
@@ -55,7 +59,7 @@ export default class ListView extends Component {
                 <Text style={styles.cardTitle}>{currentArt.name}</Text>
                 <Text style={styles.cardAuthor}>By {currentArt.artist}</Text>
                 <Text style={styles.cardDate}>{currentArt.date}</Text>
-
+                <Text onPress={() => this.goToDetailedView(currentArt.id)} style={styles.cardInfo} key={currentArt.id}>Tap for more info</Text>
               </View>
 
             </View>
@@ -132,6 +136,10 @@ const styles = StyleSheet.create({
     color: '#181C22',
     fontSize: 16,
     marginTop: 10,
+  },
+  cardInfo:{
+    color: '#181C22',
+    fontSize: 16,
+    marginTop: 10,
   }
-
 })

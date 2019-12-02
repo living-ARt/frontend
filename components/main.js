@@ -28,9 +28,7 @@ export default class Main extends Component {
   }
 
   async componentDidMount() {
-    console.log('in component did mount')
     const { data } = await axios.get('https://living-art-capstone.herokuapp.com/api/museum/')
-    console.log('data:', data)
     this.setState({ museums: data })
   }
 

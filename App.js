@@ -5,6 +5,7 @@ import {
 import Main from './components/main'
 import ViroSample from './components/ar-view'
 import ListView from './components/list-view'
+import DetailedView from "./components/detailed-view"
 import { Router, Scene, Stack } from 'react-native-router-flux'
 
 export default class App extends Component {
@@ -15,6 +16,7 @@ export default class App extends Component {
           <Scene key="Main" component={Main} hideNavBar={true}/>
           <Scene key="ListView" component={ListView}/>
           <Scene key="ARView" component={ViroSample} />
+          <Scene key="DetailedView" component={DetailedView}/>
         </Stack>
       </Router>
     )
