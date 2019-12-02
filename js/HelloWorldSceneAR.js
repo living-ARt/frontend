@@ -73,7 +73,6 @@ export class HelloWorldSceneAR extends Component {
   }
 
   render() {
-    console.log('this.props in render>>>', this.props)
     return (
         <ViroARScene
         onTrackingUpdated={this._onInitialized} >
