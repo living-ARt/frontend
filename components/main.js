@@ -3,11 +3,16 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import axios from 'axios'
 import ListView from './list-view'
+
+console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
 
 console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
 
@@ -29,16 +34,26 @@ export default class Main extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.header}>Living ARt</Text>
-        <Text style={styles.description}>See art like never before. Experience artwork come to life with AR.</Text>
-        {this.state.museums.map(museum => {
-          return (<TouchableOpacity style={styles.button} key={museum.id} onPress={() => this.goToListView(museum.id)} >
-            <Text style={styles.btnText}>{museum.name}</Text>
-          </TouchableOpacity>)
-        })}
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+          <View style={styles.top}>
+            <Text style={styles.header}>Living ARt</Text>
+            <Text style={styles.description}>See art like never before. Experience artwork come to life with AR.</Text>
+          </View>
 
-      </View>
+            <Text style={styles.choose}>Choose a museum below to get started.</Text>
+
+          {this.state.museums.map(museum => {
+            return (
+              <ImageBackground key={museum.id} source={{uri: "https://www.metmuseum.org/-/media/images/visit/met-fifth-avenue/fifthave_teaser.jpg"}} style={styles.museumContainer}>
+                <TouchableOpacity style={styles.button} onPress={() => this.goToListView(museum.id)} >
+                  <Text style={styles.btnText}>{museum.name}</Text>
+                </TouchableOpacity>
+              </ImageBackground>
+            )
+          })}
+      </ScrollView>
+      </SafeAreaView>
     )
   }
 }
@@ -47,30 +62,48 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#181C22',
-    paddingRight: 30,
-    paddingLeft: 30
+  },
+  top: {
+    paddingTop: 70,
+    marginBottom: 40
   },
   header: {
     fontSize: 40,
     color: '#fff',
+    marginBottom: 15,
+    paddingHorizontal: 20,
+    fontWeight: 'bold'
   },
   description: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#fff',
-    marginTop: 30,
+    paddingHorizontal: 20
+  },
+  choose: {
+    fontSize: 18,
+    color: '#fff',
+    paddingHorizontal: 20,
+    marginBottom: 20
+  },
+  museumContainer: {
+    width: 325,
+    borderRadius: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center'
   },
   button: {
-    fontSize: 20,
     alignItems: 'center',
-    padding: 20,
+    padding: 10,
     backgroundColor: '#fff',
-    marginTop: 80,
-    borderRadius: 2
+    borderRadius: 2,
+    width: 250,
+    alignSelf: 'center',
+    marginVertical: 80
   },
   btnText: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#181C22',
   }
 
