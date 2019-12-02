@@ -14,6 +14,8 @@ import ListView from './list-view'
 
 console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
 
+console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
+
 export default class Main extends Component {
   constructor() {
     super()
