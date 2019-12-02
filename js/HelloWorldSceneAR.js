@@ -134,7 +134,7 @@ export class HelloWorldSceneAR extends Component {
         </ViroFlexView>
         {/* sound component */}
         <ViroSound
-          source={'cypressSound'}
+          source= {{uri: "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a"}}
           muted={false}
           loop={false}
           paused={this.state.audioPaused}
@@ -181,9 +181,9 @@ ViroAnimations.registerAnimations({
 });
 
 // Viro prefetch's each sound & stores it locally for quick access, asynchronously.
-ViroSound.preloadSounds({
-  "cypressSound" : "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a"
-});
+// ViroSound.preloadSounds({
+//   "cypressSound" : "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a"
+// });
 
 
 module.exports = HelloWorldSceneAR;
