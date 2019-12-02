@@ -21,8 +21,8 @@ export default class ListView extends Component {
     }
   }
 
-  goToARView() {
-    Actions.ARView();
+  goToARView(museumId) {
+    Actions.ARView(museumId);
   }
 
   goToDetailedView(id){
@@ -42,8 +42,8 @@ export default class ListView extends Component {
       <SafeAreaView style={styles.container}>
       <ScrollView>
 
-        <TouchableOpacity style={styles.button} onPress={this.goToARView}>
-          <Text style={styles.btnText}>Open AR</Text>
+        <TouchableOpacity style={styles.button} onPress={() => this.goToARView(this.id)}>
+          <Text style={styles.btnText} >Open AR</Text>
         </TouchableOpacity>
 
         <Text style={styles.header}>Animated Library:</Text>

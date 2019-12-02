@@ -42,8 +42,9 @@ var AR_NAVIGATOR_TYPE = "AR";
 var defaultNavigatorType = UNSET;
 
 export default class ViroSample extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.id = this.props.data
 
     this.state = {
       navigatorType: defaultNavigatorType,
@@ -100,7 +101,7 @@ export default class ViroSample extends Component {
   _getARNavigator() {
     return (
       <ViroARSceneNavigator {...this.state.sharedProps} numberOfTrackedImages={1}
-        initialScene={{ scene: InitialARScene }} />
+        initialScene={{ scene: InitialARScene }} viroAppProps={this.id}/>
     );
   }
 

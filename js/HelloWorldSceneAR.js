@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-
+import axios from 'axios'
 import {
   ViroARScene,
   ViroARSceneNavigator,
@@ -19,19 +19,34 @@ import {
 
 } from 'react-viro';
 
-const targets = [{ name: "cypress", url: require('../assets/video/cypress.gif') }, { name: 'queen', url: require('../assets/video/queen.gif') }]
+// const targets = [{ name: "cypress", url: require('../assets/video/cypress.gif') }, { name: 'queen', url: require('../assets/video/queen.gif') }]
 
 export class HelloWorldSceneAR extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.museumId = this.props.sceneNavigator.viroAppProps
     this.state = {
       isTracking: false,
       initialized: false,
       runAnimation: false,
-      audioPaused: true
+      audioPaused: true,
+      allArtwork: []
     }
     this._onInitialized = this._onInitialized.bind(this)
     this._onClick = this._onClick.bind(this)
+  }
+
+  async componentDidMount (){
+    try {
+      const {data} = await axios.get(`https://living-art-capstone.herokuapp.com/api/museum/${this.museumId}/artwork`)
+      console.log('data>>>', data)
+      this.setState({
+        allArtwork: data
+      })
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   getNoTrackingUI() {
@@ -58,12 +73,15 @@ export class HelloWorldSceneAR extends Component {
   }
 
   render() {
+    const target = this.state.allArtwork.map(currentArt => {
+      return {name: currentArt.name, url: {uri: currentArt.videoUrl}}
+    })
     return (
         <ViroARScene
         onTrackingUpdated={this._onInitialized} >
-        {targets.map(imageTarget => {
+        {target.map((imageTarget, idx) => {
           return (
-            <ViroARImageMarker target={imageTarget.name}
+            <ViroARImageMarker key={idx} target={imageTarget.name}
               onAnchorFound={
                 (e) => {
                   this.setState({
@@ -116,7 +134,7 @@ export class HelloWorldSceneAR extends Component {
         </ViroFlexView>
         {/* sound component */}
         <ViroSound
-          source={'cypressSound'}
+          source= {{uri: "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a"}}
           muted={false}
           loop={false}
           paused={this.state.audioPaused}
@@ -131,21 +149,27 @@ export class HelloWorldSceneAR extends Component {
 
 
 ViroARTrackingTargets.createTargets({
-  "cypress": {
+  "Wheatfield with Cypresses": {
     name: 'cypress',
-    source: require('../assets/images/cypress.jpg'),
+    source: {uri: "https://living-art-img.s3.amazonaws.com/cypress.jpg"},
     orientation: "Up",
     type: 'Image',
     physicalWidth: .1 // real world width in meters
   },
-  "queen": {
+  "Molly Wales Fobes": {
     name: 'queen',
-    source: require('../assets/images/cypress.jpg'),
+    source: {uri: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/11040/33028/main-image"},
     orientation: "Up",
     type: 'Image',
     physicalWidth: .1 // real world width in meters
   },
-
+  "Houses on the Achterzaan":{
+    name: 'queen',
+    source: {uri: "https://living-art-img.s3.amazonaws.com/houses-on-the-achterzaan.jpg"},
+    orientation: "Up",
+    type: 'Image',
+    physicalWidth: .1
+  }
 });
 ViroAnimations.registerAnimations({
   animateImage: {
@@ -157,9 +181,9 @@ ViroAnimations.registerAnimations({
 });
 
 // Viro prefetch's each sound & stores it locally for quick access, asynchronously.
-ViroSound.preloadSounds({
-  "cypressSound" : "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a"
-});
+// ViroSound.preloadSounds({
+//   "cypressSound" : "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a"
+// });
 
 
 module.exports = HelloWorldSceneAR;
