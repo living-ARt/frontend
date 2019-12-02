@@ -19,7 +19,7 @@ import {
 
 } from 'react-viro';
 
-const targets = [{ name: "cypress", url: require('../assets/video/cypress.gif') }, { name: 'queen', url: require('../assets/video/queen.gif') }]
+// const targets = [{ name: "cypress", url: require('../assets/video/cypress.gif') }, { name: 'queen', url: require('../assets/video/queen.gif') }]
 
 export class HelloWorldSceneAR extends Component {
   constructor(props) {
@@ -73,12 +73,15 @@ export class HelloWorldSceneAR extends Component {
   }
 
   render() {
+    const target = this.state.allArtwork.map(currentArt => {
+      return {name: currentArt.name, url: {uri: currentArt.videoUrl}}
+    })
     return (
         <ViroARScene
         onTrackingUpdated={this._onInitialized} >
-        {targets.map(imageTarget => {
+        {target.map((imageTarget, idx) => {
           return (
-            <ViroARImageMarker target={imageTarget.name}
+            <ViroARImageMarker key={idx} target={imageTarget.name}
               onAnchorFound={
                 (e) => {
                   this.setState({
@@ -146,21 +149,27 @@ export class HelloWorldSceneAR extends Component {
 
 
 ViroARTrackingTargets.createTargets({
-  "cypress": {
+  "Wheatfield with Cypresses": {
     name: 'cypress',
-    source: require('../assets/images/cypress.jpg'),
+    source: {uri: "https://living-art-img.s3.amazonaws.com/cypress.jpg"},
     orientation: "Up",
     type: 'Image',
     physicalWidth: .1 // real world width in meters
   },
-  "queen": {
+  "Molly Wales Fobes": {
     name: 'queen',
-    source: require('../assets/images/cypress.jpg'),
+    source: {uri: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/11040/33028/main-image"},
     orientation: "Up",
     type: 'Image',
     physicalWidth: .1 // real world width in meters
   },
-
+  "Houses on the Achterzaan":{
+    name: 'queen',
+    source: {uri: "https://living-art-img.s3.amazonaws.com/houses-on-the-achterzaan.jpg"},
+    orientation: "Up",
+    type: 'Image',
+    physicalWidth: .1
+  }
 });
 ViroAnimations.registerAnimations({
   animateImage: {
