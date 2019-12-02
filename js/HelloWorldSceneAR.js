@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-
+import axios from 'axios'
 import {
   ViroARScene,
   ViroARSceneNavigator,
@@ -22,16 +22,31 @@ import {
 const targets = [{ name: "cypress", url: require('../assets/video/cypress.gif') }, { name: 'queen', url: require('../assets/video/queen.gif') }]
 
 export class HelloWorldSceneAR extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
+    this.museumId = this.props.sceneNavigator.viroAppProps
     this.state = {
       isTracking: false,
       initialized: false,
       runAnimation: false,
-      audioPaused: true
+      audioPaused: true,
+      allArtwork: []
     }
     this._onInitialized = this._onInitialized.bind(this)
     this._onClick = this._onClick.bind(this)
+  }
+
+  async componentDidMount (){
+    try {
+      const {data} = await axios.get(`https://living-art-capstone.herokuapp.com/api/museum/${this.museumId}/artwork`)
+      console.log('data>>>', data)
+      this.setState({
+        allArtwork: data
+      })
+    }
+    catch (error) {
+      console.log(error)
+    }
   }
 
   getNoTrackingUI() {
@@ -58,6 +73,7 @@ export class HelloWorldSceneAR extends Component {
   }
 
   render() {
+    console.log('this.props in render>>>', this.props)
     return (
         <ViroARScene
         onTrackingUpdated={this._onInitialized} >
