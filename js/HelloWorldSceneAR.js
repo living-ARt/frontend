@@ -43,7 +43,6 @@ export class HelloWorldSceneAR extends Component {
     )
   }
 
-
   render() {
     return (
       <ViroARScene
