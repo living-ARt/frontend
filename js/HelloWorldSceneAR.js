@@ -114,7 +114,6 @@ export class HelloWorldSceneAR extends Component {
             height={2}
           />
         </ViroFlexView>
-
         {/* sound component */}
         <ViroSound
           source={'cypressSound'}
