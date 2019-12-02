@@ -11,6 +11,8 @@ import ListView from './list-view'
 
 console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
 
+console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
+
 export default class Main extends Component {
   constructor() {
     super()
@@ -64,7 +66,6 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   button: {
-    fontSize: 20,
     alignItems: 'center',
     padding: 20,
     backgroundColor: '#fff',
