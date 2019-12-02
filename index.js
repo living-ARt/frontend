@@ -1,5 +1,6 @@
 import { AppRegistry } from 'react-native';
 import App from './App.js';
+import axios from 'axios'
 
 AppRegistry.registerComponent('ViroSample', () => App);
 
