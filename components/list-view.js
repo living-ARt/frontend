@@ -100,21 +100,22 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: '#fff',
     width: '90%',
-    marginHorizontal: 20,
+    marginHorizontal: 20
   },
   artCardLeft: {
     flex: 2
   },
   cardImage: {
-    height: 150
+    height: 140
   },
   artCardRight: {
     flex: 3,
     backgroundColor: '#fff',
     borderColor: '#181C22',
-    borderWidth: 2,
-    padding: 10,
-    alignContent: 'flex-start'
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    alignContent: 'flex-start',
+    justifyContent: 'center'
   },
   cardTitle: {
     color: '#181C22',
@@ -129,8 +130,8 @@ const styles = StyleSheet.create({
   },
   cardAuthor: {
     color: '#181C22',
+    fontSize: 16,
     marginTop: 10,
-    fontSize: 16
   }
 
 })
