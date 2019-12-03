@@ -40,7 +40,8 @@ export class HelloWorldSceneAR extends Component {
       runAnimation: false,
       audioPaused: true,
       allArtwork: [],
-      soundUrl: ''
+      soundUrl: '',
+      anchorId: ''
     }
     this._onInitialized = this._onInitialized.bind(this)
     this._onClick = this._onClick.bind(this)
@@ -96,11 +97,16 @@ export class HelloWorldSceneAR extends Component {
             <ViroARImageMarker key={idx} target={imageTarget.name}
               onAnchorFound={
                 (e) => {
+                  if (this.state.anchorId !== e.anchorId) {
+                    this._reactInternalFiber.pendingProps.arSceneNavigator.resetARSession(true, true)
+                  }
                   this.setState({
                     soundUrl: imageTarget.soundUrl,
                     runAnimation: true,
                     initialized: true,
-                    isTracking: true
+                    isTracking: true,
+                    anchorId: e.anchorId,
+                    audioPaused: true
                   })
                 }}
             >
@@ -163,8 +169,7 @@ ViroAnimations.registerAnimations({
   animateImage: {
     properties: {
       opacity: 1.0
-    },
-    duration: 5000
+    }
   },
 })
 
