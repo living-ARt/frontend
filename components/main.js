@@ -44,14 +44,27 @@ export default class Main extends Component {
             <Text style={styles.choose}>Choose a museum below to get started.</Text>
 
           {this.state.museums.map(museum => {
-            return (
-              <ImageBackground key={museum.id} source={{uri: "https://www.metmuseum.org/-/media/images/visit/met-fifth-avenue/fifthave_teaser.jpg"}} style={styles.museumContainer}>
+              if(museum.active === true){
+                <ImageBackground key={museum.id} source={{uri: museum.image}} style={styles.museumContainer}>
                 <TouchableOpacity style={styles.button} onPress={() => this.goToListView(museum.id)} >
                   <Text style={styles.btnText}>{museum.name}</Text>
                 </TouchableOpacity>
               </ImageBackground>
-            )
-          })}
+            } else {
+              <ImageBackground key={museum.id} source={{uri: museum.image}} style={styles.museumContainer}>
+              <TouchableOpacity style={styles.button} >
+                <Text style={styles.btnText}>Coming soon: {museum.name}</Text>
+              </TouchableOpacity>
+              </ImageBackground>
+            }
+          })
+
+              // <ImageBackground key={museum.id} source={{uri: "https://www.metmuseum.org/-/media/images/visit/met-fifth-avenue/fifthave_teaser.jpg"}} style={styles.museumContainer}>
+              //   <TouchableOpacity style={styles.button} onPress={() => this.goToListView(museum.id)} >
+              //     <Text style={styles.btnText}>{museum.name}</Text>
+              //   </TouchableOpacity>
+              // </ImageBackground>
+          })
       </ScrollView>
       </SafeAreaView>
     )
