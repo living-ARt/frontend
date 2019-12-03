@@ -161,7 +161,14 @@ export class HelloWorldSceneAR extends Component {
   }
 }
 
-
+ViroAnimations.registerAnimations({
+  animateImage: {
+    properties: {
+      opacity: 1.0
+    },
+    duration: 5000
+  },
+})
 
 
 
