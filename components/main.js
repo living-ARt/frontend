@@ -6,15 +6,12 @@ import {
   TouchableOpacity,
   ImageBackground,
   SafeAreaView,
-  ScrollView
+  ScrollView,
+  Image
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import axios from 'axios'
 import ListView from './list-view'
-
-console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
-
-console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed'];
 
 export default class Main extends Component {
   constructor() {
@@ -37,34 +34,34 @@ export default class Main extends Component {
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <View style={styles.top}>
-            <Text style={styles.header}>Living ARt</Text>
+            <Image source={require('../assets/logo.png')} style={styles.logo}/>
             <Text style={styles.description}>See art like never before. Experience artwork come to life with AR.</Text>
           </View>
 
             <Text style={styles.choose}>Choose a museum below to get started.</Text>
 
-          {this.state.museums.map(museum => {
-              if(museum.active === true){
-                <ImageBackground key={museum.id} source={{uri: museum.image}} style={styles.museumContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => this.goToListView(museum.id)} >
-                  <Text style={styles.btnText}>{museum.name}</Text>
-                </TouchableOpacity>
-              </ImageBackground>
-            } else {
-              <ImageBackground key={museum.id} source={{uri: museum.image}} style={styles.museumContainer}>
-              <TouchableOpacity style={styles.button} >
-                <Text style={styles.btnText}>Coming soon: {museum.name}</Text>
-              </TouchableOpacity>
-              </ImageBackground>
-            }
-          })
+          {/* map over all museums in DB */}
+          {this.state.museums.reverse().map(museum => {
 
-              // <ImageBackground key={museum.id} source={{uri: "https://www.metmuseum.org/-/media/images/visit/met-fifth-avenue/fifthave_teaser.jpg"}} style={styles.museumContainer}>
-              //   <TouchableOpacity style={styles.button} onPress={() => this.goToListView(museum.id)} >
-              //     <Text style={styles.btnText}>{museum.name}</Text>
-              //   </TouchableOpacity>
-              // </ImageBackground>
-          })
+            return (
+            <View key={museum.id}>
+              { museum.active ? (
+                <ImageBackground source={{uri: museum.image}} style={styles.museumContainer}>
+                  <TouchableOpacity style={styles.button} onPress={() => this.goToListView(museum.id)} >
+                    <Text style={styles.btnText}>{museum.name}</Text>
+                  </TouchableOpacity>
+                </ImageBackground>
+              ) : (
+                <ImageBackground source={{uri: museum.image}} style={styles.museumContainerNotActive}>
+                  <TouchableOpacity style={styles.button} activeOpacity={1}>
+                    <Text style={styles.btnText}>{museum.name}</Text>
+                  </TouchableOpacity>
+                </ImageBackground>
+              )
+            }
+            </View>
+          )
+          })}
       </ScrollView>
       </SafeAreaView>
     )
@@ -74,19 +71,22 @@ export default class Main extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    flexDirection: 'column',
     backgroundColor: '#181C22',
+    paddingHorizontal: 20,
   },
   top: {
-    paddingTop: 70,
-    marginBottom: 40
+    paddingTop: 50,
+    marginBottom: 40,
+    alignContent: 'flex-start'
   },
-  header: {
-    fontSize: 40,
-    color: '#fff',
+  logo: {
+    height: 125,
+    width: 125,
+    resizeMode: 'contain',
     marginBottom: 15,
-    paddingHorizontal: 20,
-    fontWeight: 'bold'
+    alignSelf: 'flex-start',
+    marginLeft: 20
   },
   description: {
     fontSize: 18,
@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    marginBottom: 20
   },
   button: {
     alignItems: 'center',
@@ -118,6 +119,16 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     color: '#181C22',
+  },
+  museumContainerNotActive: {
+    width: 325,
+    borderRadius: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginBottom: 20,
+    opacity: 0.35,
+    backgroundColor: 'gray',
   }
 
 })
