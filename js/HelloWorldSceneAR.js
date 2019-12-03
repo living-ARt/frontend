@@ -43,7 +43,8 @@ export class HelloWorldSceneAR extends Component {
       initialized: false,
       runAnimation: false,
       audioPaused: true,
-      allArtwork: []
+      allArtwork: [],
+      soundUrl: ''
     }
     this._onInitialized = this._onInitialized.bind(this)
     this._onClick = this._onClick.bind(this)
@@ -100,6 +101,7 @@ export class HelloWorldSceneAR extends Component {
               onAnchorFound={
                 (e) => {
                   this.setState({
+                    soundUrl: imageTarget.descriptionSound,
                     runAnimation: true,
                     initialized: true,
                     isTracking: true
@@ -149,7 +151,7 @@ export class HelloWorldSceneAR extends Component {
         </ViroFlexView>
         {/* sound component */}
         <ViroSound
-          source={{ uri: "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a" }}
+          source={{ uri: `${this.state.soundUrl}` }}
           muted={false}
           loop={false}
           paused={this.state.audioPaused}
