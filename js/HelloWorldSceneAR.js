@@ -157,15 +157,22 @@ ViroARTrackingTargets.createTargets({
     physicalWidth: .1 // real world width in meters
   },
   "Molly Wales Fobes": {
-    name: 'queen',
+    name: 'molly',
     source: {uri: "https://collectionapi.metmuseum.org/api/collection/v1/iiif/11040/33028/main-image"},
     orientation: "Up",
     type: 'Image',
     physicalWidth: .1 // real world width in meters
   },
   "Houses on the Achterzaan":{
-    name: 'queen',
+    name: 'houses',
     source: {uri: "https://living-art-img.s3.amazonaws.com/houses-on-the-achterzaan.jpg"},
+    orientation: "Up",
+    type: 'Image',
+    physicalWidth: .1
+  },
+  "Sunflowers":{
+    name: 'sunflowers',
+    source: {uri: "https://living-art-img.s3.amazonaws.com/sunflowers.jpg"},
     orientation: "Up",
     type: 'Image',
     physicalWidth: .1
