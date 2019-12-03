@@ -142,7 +142,6 @@ export class HelloWorldSceneAR extends Component {
         />
 
       </ViroARScene >
-
     );
   }
 }
