@@ -30,10 +30,6 @@ const targetCreator = (name, source_uri) => {
   ViroARTrackingTargets.createTargets(targets)
 }
 
-
-
-// const targets = [{ name: "cypress", url: require('../assets/video/cypress.gif') }, { name: 'queen', url: require('../assets/video/queen.gif') }]
-
 export class HelloWorldSceneAR extends Component {
   constructor(props) {
     super(props)
@@ -57,7 +53,7 @@ export class HelloWorldSceneAR extends Component {
         allArtwork: data
       })
       this.state.allArtwork.map(painting => {
-        return targetCreator(painting.name, painting.imageUrl)
+        return targetCreator(painting.name, painting.imageUrl, painting.descriptionSound)
       })
     }
     catch (error) {
@@ -90,7 +86,7 @@ export class HelloWorldSceneAR extends Component {
 
   render() {
     const target = this.state.allArtwork.map(currentArt => {
-      return { name: currentArt.name, url: { uri: currentArt.videoUrl } }
+      return { name: currentArt.name, url: { uri: currentArt.videoUrl }, soundUrl: currentArt.descriptionSound }
     })
     return (
       <ViroARScene
@@ -101,7 +97,7 @@ export class HelloWorldSceneAR extends Component {
               onAnchorFound={
                 (e) => {
                   this.setState({
-                    soundUrl: imageTarget.descriptionSound,
+                    soundUrl: imageTarget.soundUrl,
                     runAnimation: true,
                     initialized: true,
                     isTracking: true
@@ -171,13 +167,5 @@ ViroAnimations.registerAnimations({
     duration: 5000
   },
 })
-
-
-
-// Viro prefetch's each sound & stores it locally for quick access, asynchronously.
-// ViroSound.preloadSounds({
-//   "cypressSound" : "https://living-art-sound.s3.us-east-2.amazonaws.com/cypressSound.m4a"
-// });
-
 
 module.exports = HelloWorldSceneAR;
