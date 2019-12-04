@@ -6,61 +6,36 @@ import { StyleSheet } from 'react-native';
 
 import {
   ViroScene,
-  ViroVideo,
-  ViroText,
   Viro360Video,
-  ViroAnimations,
-  ViroAnimatedImage
 } from 'react-viro';
 
 export default class HelloWorldScene extends Component {
 
   constructor(props) {
     super(props);
-    this.video = this.props.sceneNavigator.viroAppProps
+    this.gif = this.props.sceneNavigator.viroAppProps
+    this.video = this.gif.slice(0, this.gif.length - 3) + 'mp4'
     this.state = {} // Set initial state here
   }
 
   render() {
-    console.log('props from vr:', this.props.sceneNavigator.viroAppProps)
+    console.log('video from vr:', this.video)
     return (
+
       <ViroScene>
-        <ViroAnimatedImage
-          resizeMode={'StretchToFill'}
-          // scale={[10, 10, 10]}
-          position={[0, 0, -10]}
-          visible={true}
-          animation={{
-            name: 'animateImage',
-            run: true,
-            loop: true,
-          }}
+        <Viro360Video
+          source={{ uri: this.video }}
           loop={true}
-          rotation={[-90, 0, 0]}
-          source={{ uri: `https://living-art-animations.s3.amazonaws.com/sunflowers_360.gif` }}
+          position={[0, 0, -2]}
+          scale={[5, 3, 3]}
         />
+
       </ViroScene>
     );
   }
 
 }
 
-var styles = StyleSheet.create({
-  helloWorldTextStyle: {
-    fontFamily: 'Arial',
-    fontSize: 60,
-    color: '#ffffff',
-    textAlignVertical: 'center',
-    textAlign: 'center',
-  },
-});
 
-ViroAnimations.registerAnimations({
-  animateImage: {
-    properties: {
-      opacity: 1.0
-    }
-  },
-})
 
 module.exports = HelloWorldScene;
