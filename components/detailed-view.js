@@ -58,7 +58,7 @@ export default class DetailedView extends Component {
             onPress={() => this.goToVRView(this.state.currentArt.videoUrl)}
             underlayColor={'#68a0ff'} >
 
-            <Text style={styles.buttonText}>VR</Text>
+            <Text style={styles.buttonText}>View in VR</Text>
           </ TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
@@ -115,13 +115,11 @@ const styles = StyleSheet.create({
   },
   buttons: {
     alignItems: 'center',
-    paddingTop: 20,
-    paddingRight: 40,
-    paddingBottom: 20,
-    paddingLeft: 40,
-    marginTop: 10,
-    marginBottom: 10,
+    padding: 10,
     backgroundColor: '#fff',
-    borderRadius: 2
+    borderRadius: 2,
+    width: 250,
+    alignSelf: 'center',
+    marginVertical: 40
   }
 })
