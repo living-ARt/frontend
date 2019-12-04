@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import Main from './components/main'
 import ViroSample from './components/ar-view'
+import VRViroSample from './components/vr-view'
 import ListView from './components/list-view'
 import DetailedView from "./components/detailed-view"
 import { Router, Scene, Stack } from 'react-native-router-flux'
@@ -13,10 +14,11 @@ export default class App extends Component {
     return (
       <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}>
         <Stack key="root" >
-          <Scene key="Main" component={Main} hideNavBar={true}/>
-          <Scene key="ListView" component={ListView}/>
+          <Scene key="Main" component={Main} hideNavBar={true} />
+          <Scene key="ListView" component={ListView} />
           <Scene key="ARView" component={ViroSample} />
-          <Scene key="DetailedView" component={DetailedView}/>
+          <Scene key="DetailedView" component={DetailedView} />
+          <Scene key="VRView" component={VRViroSample} />
         </Stack>
       </Router>
     )

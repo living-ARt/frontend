@@ -5,41 +5,63 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Axios from 'axios';
 
+
+import {
+  ViroVRSceneNavigator,
+} from 'react-viro'
+
+var sharedProps = {
+  apiKey: "API_KEY_HERE",
+}
+var InitialVRScene = require('../js/HelloWorldScene')
+
 export default class DetailedView extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.id = this.props.data
     this.state = {
-      currentArt: {}
+      currentArt: {},
+      sharedProps: sharedProps
     }
+    //this.goToVRView = this.goToVRView.bind(this);
   }
 
-  async componentDidMount(){
-    const {data} = await Axios.get(`https://living-art-capstone.herokuapp.com/api/artwork/${this.id}`)
+  async componentDidMount() {
+    const { data } = await Axios.get(`https://living-art-capstone.herokuapp.com/api/artwork/${this.id}`)
     this.setState({
       currentArt: data
     })
   }
 
-  render(){
-    return(
-    <SafeAreaView style={styles.container}>
-    <ScrollView>
-      <Text style={styles.title}>{this.state.currentArt.name}</Text>
-      <Text style={styles.artist}>By: {this.state.currentArt.artist}</Text>
-      <Text style={styles.date}>{this.state.currentArt.date}</Text>
-      <Text style={styles.description}>{this.state.currentArt.description}</Text>
-      <Image
-        source={{uri: this.state.currentArt.imageUrl}}
-        style={styles.img}
-      />
-    </ScrollView>
-    </SafeAreaView>
+  goToVRView(video) {
+    Actions.VRView(video);
+  }
+
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+          <Text style={styles.title}>{this.state.currentArt.name}</Text>
+          <Text style={styles.artist}>By: {this.state.currentArt.artist}</Text>
+          <Text style={styles.date}>{this.state.currentArt.date}</Text>
+          <Text style={styles.description}>{this.state.currentArt.description}</Text>
+          <Image
+            source={{ uri: this.state.currentArt.imageUrl }}
+            style={styles.img}
+          />
+          <TouchableOpacity style={styles.buttons}
+            onPress={() => this.goToVRView(this.state.currentArt.videoUrl)}
+            underlayColor={'#68a0ff'} >
+
+            <Text style={styles.buttonText}>VR</Text>
+          </ TouchableOpacity>
+        </ScrollView>
+      </SafeAreaView>
     )
   }
 }
@@ -85,5 +107,21 @@ const styles = StyleSheet.create({
     height: 350,
     alignSelf: "center",
     paddingHorizontal: 20
+  },
+  buttonText: {
+    color: '#181C22',
+    textAlign: 'center',
+    fontSize: 20
+  },
+  buttons: {
+    alignItems: 'center',
+    paddingTop: 20,
+    paddingRight: 40,
+    paddingBottom: 20,
+    paddingLeft: 40,
+    marginTop: 10,
+    marginBottom: 10,
+    backgroundColor: '#fff',
+    borderRadius: 2
   }
 })
