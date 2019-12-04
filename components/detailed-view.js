@@ -30,8 +30,9 @@ export default class DetailedView extends Component {
     return(
     <SafeAreaView style={styles.container}>
     <ScrollView>
-      <Text style={styles.body}>Artist: {this.state.currentArt.artist}</Text>
-      <Text style={styles.body}>Date: {this.state.currentArt.date}</Text>
+      <Text style={styles.title}>{this.state.currentArt.name}</Text>
+      <Text style={styles.artist}>By: {this.state.currentArt.artist}</Text>
+      <Text style={styles.date}>{this.state.currentArt.date}</Text>
       <Text style={styles.description}>{this.state.currentArt.description}</Text>
       <Image
         source={{uri: this.state.currentArt.imageUrl}}
@@ -49,15 +50,30 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#181C22',
   },
-  body: {
-    fontSize: 20,
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
     color: '#fff',
     paddingTop: 20,
     alignSelf: 'flex-start',
     paddingHorizontal: 20
   },
+  artist: {
+    fontSize: 18,
+    color: '#fff',
+    paddingTop: 20,
+    alignSelf: 'flex-start',
+    paddingHorizontal: 20
+  },
+  date: {
+    fontSize: 18,
+    color: '#fff',
+    paddingTop: 20,
+    fontStyle: 'italic',
+    paddingHorizontal: 20
+  },
   description: {
-    fontSize: 16,
+    fontSize: 18,
     color: '#fff',
     paddingTop: 20,
     alignSelf: 'flex-start',
