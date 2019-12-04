@@ -43,7 +43,7 @@ export default class ListView extends Component {
       <ScrollView>
 
         <TouchableOpacity style={styles.button} onPress={() => this.goToARView(this.id)}>
-          <Text style={styles.btnText} >Open AR</Text>
+          <Text style={styles.btnText}>Open AR</Text>
         </TouchableOpacity>
 
         <Text style={styles.header}>Animated Library:</Text>
@@ -55,12 +55,14 @@ export default class ListView extends Component {
                 <Image source={{uri: currentArt.imageUrl}} style={styles.cardImage} />
               </View>
 
-              <View style={styles.artCardRight}>
-                <Text style={styles.cardTitle}>{currentArt.name}</Text>
-                <Text style={styles.cardAuthor}>By {currentArt.artist}</Text>
-                <Text style={styles.cardDate}>{currentArt.date}</Text>
-                <Text onPress={() => this.goToDetailedView(currentArt.id)} style={styles.cardInfo} key={currentArt.id}>Tap for more info</Text>
-              </View>
+              <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardRight}>
+                <View>
+                  <Text style={styles.cardTitle}>{currentArt.name}</Text>
+                  <Text style={styles.cardAuthor}>By {currentArt.artist}</Text>
+                  <Text style={styles.cardDate}>{currentArt.date}</Text>
+                  <Text style={styles.cardInfo} key={currentArt.id}>Tap for more info</Text>
+                </View>
+              </TouchableOpacity>
 
             </View>
           )
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
   },
   cardInfo:{
     color: '#181C22',
-    fontSize: 16,
+    fontSize: 14,
     marginTop: 10,
   }
 })

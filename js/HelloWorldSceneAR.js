@@ -14,7 +14,6 @@ import {
   ViroARImageMarker,
   ViroAnimatedImage,
   ViroAnimations,
-  ViroNode,
   ViroSound
 
 } from 'react-viro';
@@ -41,7 +40,8 @@ export class HelloWorldSceneAR extends Component {
       audioPaused: true,
       allArtwork: [],
       soundUrl: '',
-      anchorId: ''
+      anchorId: '',
+      visibleText: false
     }
     this._onInitialized = this._onInitialized.bind(this)
     this._onClick = this._onClick.bind(this)
@@ -92,6 +92,7 @@ export class HelloWorldSceneAR extends Component {
     return (
       <ViroARScene
         onTrackingUpdated={this._onInitialized} >
+
         {target.map((imageTarget, idx) => {
           return (
             <ViroARImageMarker key={idx} target={imageTarget.name}
@@ -106,7 +107,8 @@ export class HelloWorldSceneAR extends Component {
                     initialized: true,
                     isTracking: true,
                     anchorId: e.anchorId,
-                    audioPaused: true
+                    audioPaused: true,
+                    visibleText: true
                   })
                 }}
             >
@@ -134,15 +136,17 @@ export class HelloWorldSceneAR extends Component {
         {/* handles text on AR view page */}
         <ViroFlexView
           style={{ flexDirection: 'row', padding: .15, alignSelf: 'center' }}
-          height={.80}
-          width={3.25}
-          position={[.5, -3, -5]}
+          height={.75}
+          width={3}
+          position={[0, -3, -5]}
           rotation={[0, 0, 0]}
           backgroundColor={'#00979A'}
           dragType="FixedToPlane"
+          visible={this.state.visibleText}
         >
+
           <ViroText
-            style={{ flex: 1, fontFamily: "Arial", fontSize: 20, justifyContent: 'center' }}
+            style={{ flex: 1, fontFamily: "Roboto", fontSize: 20, justifyContent: 'center' }}
             text="Tap animation and swipe right to play and pause audio."
             textAlign="center"
             textLineBreakMode="CharWrap"
@@ -151,6 +155,7 @@ export class HelloWorldSceneAR extends Component {
             height={2}
           />
         </ViroFlexView>
+
         {/* sound component */}
         <ViroSound
           source={{ uri: `${this.state.soundUrl}` }}
