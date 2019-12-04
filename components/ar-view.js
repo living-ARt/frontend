@@ -39,7 +39,7 @@ var AR_NAVIGATOR_TYPE = "AR";
 
 // This determines which type of experience to launch in, or UNSET, if the user should
 // be presented with a choice of AR or VR. By default, we offer the user a choice.
-var defaultNavigatorType = UNSET;
+var defaultNavigatorType = AR_NAVIGATOR_TYPE;
 
 export default class ViroSample extends Component {
   constructor(props) {
@@ -101,7 +101,7 @@ export default class ViroSample extends Component {
   _getARNavigator() {
     return (
       <ViroARSceneNavigator {...this.state.sharedProps} numberOfTrackedImages={1}
-        initialScene={{ scene: InitialARScene }} viroAppProps={this.id}/>
+        initialScene={{ scene: InitialARScene }} viroAppProps={this.id} />
     );
   }
 
@@ -133,21 +133,21 @@ export default class ViroSample extends Component {
 
 var localStyles = StyleSheet.create({
 
-  viroContainer :{
-    flex : 1,
+  viroContainer: {
+    flex: 1,
     backgroundColor: "#181C22",
   },
   outer: {
     flex: 1,
     flexDirection: 'row',
 
-    alignItems:'center',
+    alignItems: 'center',
     backgroundColor: "#181C22",
   },
   inner: {
     flex: 1,
     flexDirection: 'column',
-    alignItems:'center',
+    alignItems: 'center',
     backgroundColor: "#181C22",
   },
   titleText: {
@@ -158,11 +158,11 @@ var localStyles = StyleSheet.create({
     fontSize: 25
   },
   buttonText: {
-    color:'#181C22',
-    textAlign:'center',
-    fontSize : 20
+    color: '#181C22',
+    textAlign: 'center',
+    fontSize: 20
   },
-  buttons : {
+  buttons: {
     alignItems: 'center',
     paddingTop: 20,
     paddingRight: 40,
