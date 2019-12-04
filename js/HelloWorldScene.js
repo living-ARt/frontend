@@ -7,6 +7,7 @@ import { StyleSheet } from 'react-native';
 import {
   ViroScene,
   Viro360Video,
+  ViroVideo
 } from 'react-viro';
 
 export default class HelloWorldScene extends Component {
@@ -23,10 +24,10 @@ export default class HelloWorldScene extends Component {
     return (
 
       <ViroScene>
-        <Viro360Video
+        <ViroVideo
           source={{ uri: this.video }}
           loop={true}
-          position={[0, 0, -10]}
+          position={[0, 0, -1]}
           scale={[5, 3, 3]}
         />
 
