@@ -26,7 +26,7 @@ export default class HelloWorldScene extends Component {
         <Viro360Video
           source={{ uri: this.video }}
           loop={true}
-          position={[0, 0, -2]}
+          position={[0, 0, -10]}
           scale={[5, 3, 3]}
         />
 
