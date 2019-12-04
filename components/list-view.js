@@ -43,7 +43,7 @@ export default class ListView extends Component {
       <ScrollView>
 
         <TouchableOpacity style={styles.button} onPress={() => this.goToARView(this.id)}>
-          <Text style={styles.btnText} >Open AR</Text>
+          <Text style={styles.btnText} >Start</Text>
         </TouchableOpacity>
 
         <Text style={styles.header}>Animated Library:</Text>
