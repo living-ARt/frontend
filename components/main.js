@@ -41,7 +41,7 @@ export default class Main extends Component {
             <Text style={styles.choose}>Choose a museum below to get started.</Text>
 
           {/* map over all museums in DB */}
-          {this.state.museums.reverse().map(museum => {
+          {this.state.museums.map(museum => {
 
             return (
             <View key={museum.id}>
