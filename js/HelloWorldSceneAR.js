@@ -87,7 +87,7 @@ export class HelloWorldSceneAR extends Component {
 
   render() {
     const target = this.state.allArtwork.map(currentArt => {
-      return { name: currentArt.name, url: { uri: currentArt.videoUrl }, soundUrl: currentArt.descriptionSound }
+      return { name: currentArt.name, url: { uri: currentArt.gifUrl }, soundUrl: currentArt.descriptionSound }
     })
     return (
       <ViroARScene
