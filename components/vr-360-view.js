@@ -15,8 +15,6 @@ import {
 
 const InitialVR360Scene = require('../js/VR360')
 
-
-
 export default class VR360Scene extends Component {
   constructor(props) {
     super(props);
@@ -30,4 +28,5 @@ export default class VR360Scene extends Component {
     )
   }
 }
+
 module.exports = VR360Scene

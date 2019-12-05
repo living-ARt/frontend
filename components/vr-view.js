@@ -13,10 +13,7 @@ import {
   ViroVRSceneNavigator,
 } from 'react-viro';
 
-
 const InitialVRScene = require('../js/VRScene');
-
-
 
 export default class VRScene extends Component {
   constructor(props) {
@@ -30,10 +27,6 @@ export default class VRScene extends Component {
         initialScene={{ scene: InitialVRScene }} onExitViro={this._exitViro} viroAppProps={this.video} />
     )
   }
-
-
 }
-
-
 
 module.exports = VRScene

@@ -2,11 +2,8 @@
 
 import React, { Component } from 'react';
 
-import { StyleSheet } from 'react-native';
-
 import {
   ViroScene,
-  Viro360Video,
   ViroVideo
 } from 'react-viro';
 
@@ -20,9 +17,7 @@ export default class HelloWorldScene extends Component {
   }
 
   render() {
-    console.log('video from vr:', this.video)
     return (
-
       <ViroScene>
         <ViroVideo
           source={{ uri: this.video }}
@@ -30,13 +25,9 @@ export default class HelloWorldScene extends Component {
           position={[0, 0, -1]}
           scale={[5, 3, 3]}
         />
-
       </ViroScene>
     );
   }
-
 }
-
-
 
 module.exports = HelloWorldScene;

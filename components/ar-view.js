@@ -13,9 +13,7 @@ import {
   ViroARSceneNavigator
 } from 'react-viro';
 
-
 const InitialARScene = require('../js/ARScene');
-
 
 export default class ARScene extends Component {
   constructor(props) {
@@ -28,7 +26,6 @@ export default class ARScene extends Component {
         initialScene={{ scene: InitialARScene }} viroAppProps={this.id} />
     )
   }
-
 }
 
 module.exports = ARScene
