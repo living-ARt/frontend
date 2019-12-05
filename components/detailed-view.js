@@ -42,6 +42,10 @@ export default class DetailedView extends Component {
     Actions.VRView(video);
   }
 
+  goToVR360View(video) {
+    Actions.VR360View(video);
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.container}>
@@ -59,6 +63,12 @@ export default class DetailedView extends Component {
             underlayColor={'#68a0ff'} >
 
             <Text style={styles.buttonText}>View in VR</Text>
+          </ TouchableOpacity>
+          <TouchableOpacity style={styles.buttons}
+            onPress={() => this.goToVR360View(this.state.currentArt.videoUrl)}
+            underlayColor={'#68a0ff'} >
+
+            <Text style={styles.buttonText}>View in 360 VR</Text>
           </ TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
