@@ -11,8 +11,7 @@ export default class VRScene extends Component {
 
   constructor(props) {
     super(props);
-    this.gif = this.props.sceneNavigator.viroAppProps
-    this.video = this.gif.slice(0, this.gif.length - 3) + 'mp4'
+    this.video = this.props.sceneNavigator.viroAppProps
     this.state = {} // Set initial state here
   }
 
