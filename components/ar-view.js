@@ -14,7 +14,7 @@ import {
 } from 'react-viro';
 
 
-const InitialARScene = require('../js/HelloWorldSceneAR');
+const InitialARScene = require('../js/ARScene');
 
 
 export default class ARScene extends Component {

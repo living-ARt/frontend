@@ -19,7 +19,6 @@ import {
 var sharedProps = {
   apiKey: "API_KEY_HERE",
 }
-var InitialVRScene = require('../js/HelloWorldScene')
 
 export default class DetailedView extends Component {
   constructor(props) {
