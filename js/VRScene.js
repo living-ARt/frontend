@@ -7,7 +7,7 @@ import {
   ViroVideo
 } from 'react-viro';
 
-export default class HelloWorldScene extends Component {
+export default class VRScene extends Component {
 
   constructor(props) {
     super(props);
@@ -30,4 +30,4 @@ export default class HelloWorldScene extends Component {
   }
 }
 
-module.exports = HelloWorldScene;
+module.exports = VRScene;
