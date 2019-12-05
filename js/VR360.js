@@ -14,13 +14,11 @@ export default class VR360 extends Component {
 
   constructor(props) {
     super(props);
-    this.gif = this.props.sceneNavigator.viroAppProps
-    this.video = this.gif.slice(0, this.gif.length - 3) + 'mp4'
+    this.video = this.props.sceneNavigator.viroAppProps
     this.state = {} // Set initial state here
   }
 
   render() {
-    console.log('video from vr:', this.video)
     return (
 
       <ViroScene>

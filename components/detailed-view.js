@@ -5,6 +5,7 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
+  View,
   TouchableOpacity,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -58,14 +59,14 @@ export default class DetailedView extends Component {
             source={{ uri: this.state.currentArt.imageUrl }}
             style={styles.img}
           />
-          <TouchableOpacity style={styles.buttons}
-            onPress={() => this.goToVRView(this.state.currentArt.videoUrl)}
+          <TouchableOpacity style={styles.button1}
+            onPress={() => this.goToVRView(this.state.currentArt.VRUrl)}
             underlayColor={'#68a0ff'} >
 
             <Text style={styles.buttonText}>View in VR</Text>
           </ TouchableOpacity>
-          <TouchableOpacity style={styles.buttons}
-            onPress={() => this.goToVR360View(this.state.currentArt.videoUrl)}
+          <TouchableOpacity style={styles.button2}
+            onPress={() => this.goToVR360View(this.state.currentArt.VRUrl)}
             underlayColor={'#68a0ff'} >
 
             <Text style={styles.buttonText}>View in 360 VR</Text>
@@ -123,7 +124,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20
   },
-  buttons: {
+  button1: {
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    width: 250,
+    alignSelf: 'center',
+    marginVertical: 40
+  },
+  button2: {
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#fff',
