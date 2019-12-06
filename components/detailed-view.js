@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#181C22',
     textAlign: 'center',
-    fontSize: 20
+    fontSize: 16
   },
   img: {
     width: 350,
