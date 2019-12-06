@@ -51,9 +51,12 @@ export default class ListView extends Component {
         {this.state.allArtwork.map(currentArt => {
           return(
             <View key={currentArt.id} style={styles.artCard}>
-              <View style={styles.artCardLeft}>
-                <Image source={{uri: currentArt.imageUrl}} style={styles.cardImage} />
-              </View>
+
+              <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardLeft}>
+                <View>
+                  <Image source={{uri: currentArt.imageUrl}} style={styles.cardImage} />
+                </View>
+              </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardRight}>
                 <View>

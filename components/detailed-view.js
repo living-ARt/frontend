@@ -55,22 +55,29 @@ export default class DetailedView extends Component {
           <Text style={styles.artist}>By: {this.state.currentArt.artist}</Text>
           <Text style={styles.date}>{this.state.currentArt.date}</Text>
           <Text style={styles.description}>{this.state.currentArt.description}</Text>
+          <Text style={styles.description}>{this.state.currentArt.location}</Text>
+
+          <View style={styles.buttonRow}>
+            <TouchableOpacity style={styles.button1}
+              onPress={() => this.goToVRView(this.state.currentArt.VRUrl)}
+              underlayColor={'#68a0ff'} >
+
+              <Text style={styles.buttonText}>View in VR</Text>
+            </ TouchableOpacity>
+
+            <TouchableOpacity style={styles.button2}
+              onPress={() => this.goToVR360View(this.state.currentArt.VRUrl)}
+              underlayColor={'#68a0ff'} >
+
+              <Text style={styles.buttonText}>View in 360 VR</Text>
+            </ TouchableOpacity>
+          </View>
+
           <Image
             source={{ uri: this.state.currentArt.imageUrl }}
             style={styles.img}
           />
-          <TouchableOpacity style={styles.button1}
-            onPress={() => this.goToVRView(this.state.currentArt.VRUrl)}
-            underlayColor={'#68a0ff'} >
 
-            <Text style={styles.buttonText}>View in VR</Text>
-          </ TouchableOpacity>
-          <TouchableOpacity style={styles.button2}
-            onPress={() => this.goToVR360View(this.state.currentArt.VRUrl)}
-            underlayColor={'#68a0ff'} >
-
-            <Text style={styles.buttonText}>View in 360 VR</Text>
-          </ TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     )
@@ -110,36 +117,41 @@ const styles = StyleSheet.create({
     color: '#fff',
     paddingTop: 20,
     alignSelf: 'flex-start',
-    paddingHorizontal: 20,
-    marginBottom: 10
-  },
-  img: {
-    width: 350,
-    height: 350,
-    alignSelf: "center",
     paddingHorizontal: 20
   },
-  buttonText: {
-    color: '#181C22',
-    textAlign: 'center',
-    fontSize: 20
+  buttonRow: {
+    flex: 1,
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+    justifyContent: 'space-evenly',
+    alignContent: 'center',
+    marginVertical: 20
   },
   button1: {
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#fff',
     borderRadius: 2,
-    width: 250,
-    alignSelf: 'center',
-    marginVertical: 40
+    width: 150,
+    alignSelf: 'center'
   },
   button2: {
     alignItems: 'center',
     padding: 10,
     backgroundColor: '#fff',
     borderRadius: 2,
-    width: 250,
-    alignSelf: 'center',
-    marginVertical: 40
+    width: 150,
+    alignSelf: 'center'
+  },
+  buttonText: {
+    color: '#181C22',
+    textAlign: 'center',
+    fontSize: 20
+  },
+  img: {
+    width: 350,
+    height: 350,
+    alignSelf: "center",
+    paddingHorizontal: 20
   }
 })
