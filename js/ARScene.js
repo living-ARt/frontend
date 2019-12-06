@@ -14,6 +14,8 @@ import {
   ViroSound
 } from 'react-viro';
 
+import { StyleSheet } from 'react-native'
+
 const targetCreator = (name, source_uri) => {
   let targetName = name
   let targets = {}
@@ -109,7 +111,7 @@ export class ARScene extends Component {
 
         {/* handles text on AR view page */}
         <ViroFlexView
-          style={{ flexDirection: 'row', padding: .15, alignSelf: 'center' }}
+          style={styles.textContainer}
           height={.75}
           width={3}
           position={[0, -3, -5]}
@@ -120,7 +122,7 @@ export class ARScene extends Component {
         >
 
           <ViroText
-            style={{ flex: 1, fontFamily: "Roboto", fontSize: 20, justifyContent: 'center' }}
+            style={styles.textContainerText}
             text="Tap animation and swipe right to play and pause audio."
             textAlign="center"
             textLineBreakMode="CharWrap"
@@ -150,6 +152,21 @@ ViroAnimations.registerAnimations({
       opacity: 1.0
     }
   },
+})
+
+const styles = StyleSheet.create({
+  textContainer: {
+    flexDirection: 'row',
+    padding: .15,
+    alignSelf: 'center'
+  },
+  textContainerText: {
+    flex: 1,
+    fontFamily: "Roboto",
+    fontSize: 20,
+    justifyContent: 'center'
+  }
+
 })
 
 module.exports = ARScene;

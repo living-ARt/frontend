@@ -48,11 +48,14 @@ export default class ListView extends Component {
           <Text style={styles.header}>Animated Library:</Text>
           {/* this renders a list of the current art at the selected museum */}
           {this.state.allArtwork.map(currentArt => {
-            return (
+            return(
               <View key={currentArt.id} style={styles.artCard}>
-                <View style={styles.artCardLeft}>
-                  <Image source={{ uri: currentArt.imageUrl }} style={styles.cardImage} />
-                </View>
+
+                <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardLeft}>
+                  <View>
+                    <Image source={{uri: currentArt.imageUrl}} style={styles.cardImage} />
+                  </View>
+                </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardRight}>
                   <View>
