@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import axios from 'axios'
-import ListView from './list-view'
 
 export default class Main extends Component {
   constructor() {
@@ -34,35 +33,33 @@ export default class Main extends Component {
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <View style={styles.top}>
-            <Image source={require('../assets/logo.png')} style={styles.logo}/>
+            <Image source={require('../assets/logo.png')} style={styles.logo} />
             <Text style={styles.description}>See art like never before. Experience artwork come to life with AR.</Text>
           </View>
-
-            <Text style={styles.choose}>Choose a museum below to get started.</Text>
+          <Text style={styles.choose}>Choose a museum below to get started.</Text>
 
           {/* map over all museums in DB */}
           {this.state.museums.map(museum => {
-
             return (
-            <View key={museum.id}>
-              { museum.active ? (
-                <ImageBackground source={{uri: museum.image}} style={styles.museumContainer}>
-                  <TouchableOpacity style={styles.button} onPress={() => this.goToListView(museum.id)} >
-                    <Text style={styles.btnText}>{museum.name}</Text>
-                  </TouchableOpacity>
-                </ImageBackground>
-              ) : (
-                <ImageBackground source={{uri: museum.image}} style={styles.museumContainerNotActive}>
-                  <TouchableOpacity style={styles.button} activeOpacity={1}>
-                    <Text style={styles.btnText}>{museum.name}</Text>
-                  </TouchableOpacity>
-                </ImageBackground>
-              )
-            }
-            </View>
-          )
+              <View key={museum.id}>
+                {museum.active ? (
+                  <ImageBackground source={{ uri: museum.image }} style={styles.museumContainer}>
+                    <TouchableOpacity style={styles.button} onPress={() => this.goToListView(museum.id)} >
+                      <Text style={styles.btnText}>{museum.name}</Text>
+                    </TouchableOpacity>
+                  </ImageBackground>
+                ) : (
+                    <ImageBackground source={{ uri: museum.image }} style={styles.museumContainerNotActive}>
+                      <TouchableOpacity style={styles.button} activeOpacity={1}>
+                        <Text style={styles.btnText}>{museum.name}</Text>
+                      </TouchableOpacity>
+                    </ImageBackground>
+                  )
+                }
+              </View>
+            )
           })}
-      </ScrollView>
+        </ScrollView>
       </SafeAreaView>
     )
   }

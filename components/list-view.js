@@ -13,7 +13,7 @@ import { Actions } from 'react-native-router-flux';
 // import DetailedView from "./detailed-view"
 
 export default class ListView extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.id = this.props.data
     this.state = {
@@ -25,13 +25,12 @@ export default class ListView extends Component {
     Actions.ARView(museumId);
   }
 
-  goToDetailedView(id){
+  goToDetailedView(id) {
     Actions.DetailedView(id)
   }
 
-  async componentDidMount (){
-    const {data} = await axios.get(`https://living-art-capstone.herokuapp.com/api/museum/${this.id}/artwork`)
-    console.log(data)
+  async componentDidMount() {
+    const { data } = await axios.get(`https://living-art-capstone.herokuapp.com/api/museum/${this.id}/artwork`)
     this.setState({
       allArtwork: data
     })
@@ -40,37 +39,37 @@ export default class ListView extends Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-      <ScrollView>
+        <ScrollView>
 
-        <TouchableOpacity style={styles.button} onPress={() => this.goToARView(this.id)}>
-          <Text style={styles.btnText}>Open AR</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => this.goToARView(this.id)}>
+            <Text style={styles.btnText}>Open AR</Text>
+          </TouchableOpacity>
 
-        <Text style={styles.header}>Animated Library:</Text>
-        {/* this renders a list of the current art at the selected museum */}
-        {this.state.allArtwork.map(currentArt => {
-          return(
-            <View key={currentArt.id} style={styles.artCard}>
+          <Text style={styles.header}>Animated Library:</Text>
+          {/* this renders a list of the current art at the selected museum */}
+          {this.state.allArtwork.map(currentArt => {
+            return(
+              <View key={currentArt.id} style={styles.artCard}>
 
-              <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardLeft}>
-                <View>
-                  <Image source={{uri: currentArt.imageUrl}} style={styles.cardImage} />
-                </View>
-              </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardLeft}>
+                  <View>
+                    <Image source={{uri: currentArt.imageUrl}} style={styles.cardImage} />
+                  </View>
+                </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardRight}>
-                <View>
-                  <Text style={styles.cardTitle}>{currentArt.name}</Text>
-                  <Text style={styles.cardAuthor}>By {currentArt.artist}</Text>
-                  <Text style={styles.cardDate}>{currentArt.date}</Text>
-                  <Text style={styles.cardInfo} key={currentArt.id}>Tap for more info</Text>
-                </View>
-              </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.goToDetailedView(currentArt.id)} style={styles.artCardRight}>
+                  <View>
+                    <Text style={styles.cardTitle}>{currentArt.name}</Text>
+                    <Text style={styles.cardAuthor}>By {currentArt.artist}</Text>
+                    <Text style={styles.cardDate}>{currentArt.date}</Text>
+                    <Text style={styles.cardInfo} key={currentArt.id}>Tap for more info</Text>
+                  </View>
+                </TouchableOpacity>
 
-            </View>
-          )
-        })}
-      </ScrollView>
+              </View>
+            )
+          })}
+        </ScrollView>
       </SafeAreaView>
     )
   }
@@ -142,7 +141,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 10,
   },
-  cardInfo:{
+  cardInfo: {
     color: '#181C22',
     fontSize: 14,
     marginTop: 10,
