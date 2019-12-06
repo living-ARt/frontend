@@ -4,18 +4,14 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {
   ViroARScene,
-  ViroARSceneNavigator,
   ViroConstants,
   ViroARTrackingTargets,
-  ViroARPlane,
   ViroText,
-  ViroImage,
   ViroFlexView,
   ViroARImageMarker,
   ViroAnimatedImage,
   ViroAnimations,
   ViroSound
-
 } from 'react-viro';
 
 const targetCreator = (name, source_uri) => {
@@ -29,13 +25,12 @@ const targetCreator = (name, source_uri) => {
   ViroARTrackingTargets.createTargets(targets)
 }
 
-export class HelloWorldSceneAR extends Component {
+export class ARScene extends Component {
   constructor(props) {
     super(props)
     this.museumId = this.props.sceneNavigator.viroAppProps
     this.state = {
       isTracking: false,
-      initialized: false,
       runAnimation: false,
       audioPaused: true,
       allArtwork: [],
@@ -43,7 +38,6 @@ export class HelloWorldSceneAR extends Component {
       anchorId: '',
       visibleText: false
     }
-    this._onInitialized = this._onInitialized.bind(this)
     this._onClick = this._onClick.bind(this)
   }
 
@@ -62,23 +56,6 @@ export class HelloWorldSceneAR extends Component {
     }
   }
 
-  getNoTrackingUI() {
-    const { isTracking, initialized } = this.state;
-    return (
-      <ViroText text={
-        initialized ? 'Initializing AR...'
-          : "No Tracking"
-      } />
-    )
-  }
-
-  _onInitialized = (state, reason) => {
-    if (state == ViroConstants.TRACKING_NORMAL) {
-      isTracking: true
-    } else if (state == ViroConstants.TRACKING_NONE) {
-      isTracking: false
-    }
-  }
   _onClick(position, source) {
     this.setState({
       audioPaused: !this.state.audioPaused
@@ -90,9 +67,7 @@ export class HelloWorldSceneAR extends Component {
       return { name: currentArt.name, url: { uri: currentArt.gifUrl }, soundUrl: currentArt.descriptionSound }
     })
     return (
-      <ViroARScene
-        onTrackingUpdated={this._onInitialized} >
-
+      <ViroARScene >
         {target.map((imageTarget, idx) => {
           return (
             <ViroARImageMarker key={idx} target={imageTarget.name}
@@ -112,7 +87,6 @@ export class HelloWorldSceneAR extends Component {
                   })
                 }}
             >
-
               <ViroAnimatedImage
                 resizeMode={'StretchToFill'}
                 scale={[0.1, 0.1, 0]}
@@ -178,4 +152,4 @@ ViroAnimations.registerAnimations({
   },
 })
 
-module.exports = HelloWorldSceneAR;
+module.exports = ARScene;

@@ -5,21 +5,10 @@ import {
   Image,
   SafeAreaView,
   ScrollView,
-  View,
   TouchableOpacity,
 } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Axios from 'axios';
-
-
-import {
-  ViroVRSceneNavigator,
-} from 'react-viro'
-
-var sharedProps = {
-  apiKey: "API_KEY_HERE",
-}
-var InitialVRScene = require('../js/HelloWorldScene')
 
 export default class DetailedView extends Component {
   constructor(props) {
@@ -27,9 +16,7 @@ export default class DetailedView extends Component {
     this.id = this.props.data
     this.state = {
       currentArt: {},
-      sharedProps: sharedProps
     }
-    //this.goToVRView = this.goToVRView.bind(this);
   }
 
   async componentDidMount() {
