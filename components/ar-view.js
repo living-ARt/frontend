@@ -10,15 +10,16 @@
 import React, { Component } from 'react';
 
 import {
-  ViroARSceneNavigator
+  ViroARSceneNavigator //built in function that redirects to AR view
 } from 'react-viro';
 
-const InitialARScene = require('../js/ARScene');
+const InitialARScene = require('../js/ARScene'); //setting the initial scene for the AR view
 
+//rendering the AR scene from when a user clicks on the `Open AR` button in `list-view`
 export default class ARScene extends Component {
   constructor(props) {
     super(props);
-    this.id = this.props.data
+    this.id = this.props.data //receiving props.data from the `list-view`
   }
   render() {
     return (
