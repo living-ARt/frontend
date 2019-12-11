@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import {
   ViroARScene,
-  ViroConstants,
   ViroARTrackingTargets,
   ViroText,
   ViroFlexView,
@@ -16,6 +15,7 @@ import {
 
 import { StyleSheet } from 'react-native'
 
+//helper function that creates targets necessary for anchoring
 const targetCreator = (name, source_uri) => {
   let targetName = name
   let targets = {}
@@ -43,12 +43,14 @@ export class ARScene extends Component {
     this._onClick = this._onClick.bind(this)
   }
 
+  //this is getting all the artwork from a selected museum
   async componentDidMount() {
     try {
       const { data } = await axios.get(`https://living-art-capstone.herokuapp.com/api/museum/${this.museumId}/artwork`)
       this.setState({
         allArtwork: data
       })
+      // this is mapping through the array of artwork and creating targets for each
       this.state.allArtwork.map(painting => {
         return targetCreator(painting.name, painting.imageUrl, painting.descriptionSound)
       })
@@ -58,12 +60,14 @@ export class ARScene extends Component {
     }
   }
 
+  //this is to toggle when the user wants to start playing sound
   _onClick(position, source) {
     this.setState({
       audioPaused: !this.state.audioPaused
     })
   }
 
+  //will only render when the user finds a target that it can anchor to
   render() {
     const target = this.state.allArtwork.map(currentArt => {
       return { name: currentArt.name, url: { uri: currentArt.gifUrl }, soundUrl: currentArt.descriptionSound }
@@ -72,6 +76,7 @@ export class ARScene extends Component {
       <ViroARScene >
         {target.map((imageTarget, idx) => {
           return (
+            //this component uses image recognition to identify when a user is pointing the camera to a target object and renders ViroAnimatedImage
             <ViroARImageMarker key={idx} target={imageTarget.name}
               onAnchorFound={
                 (e) => {

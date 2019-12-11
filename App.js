@@ -12,6 +12,7 @@ import { Router, Scene, Stack } from 'react-native-router-flux'
 
 export default class App extends Component {
   render() {
+    //setting up routes for the components
     return (
       <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle}>
         <Stack key="root" >

@@ -11,8 +11,7 @@ export default class VRScene extends Component {
 
   constructor(props) {
     super(props);
-    this.video = this.props.sceneNavigator.viroAppProps
-    this.state = {} // Set initial state here
+    this.video = this.props.sceneNavigator.viroAppProps //this is being received from detailed view
   }
 
   render() {

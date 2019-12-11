@@ -9,7 +9,7 @@ import {
   ScrollView,
   Image
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux'; //built in function to redirect to another component
 import axios from 'axios'
 
 export default class Main extends Component {
@@ -19,16 +19,20 @@ export default class Main extends Component {
       museums: []
     }
   }
+
+  //going to the `list-view` and passing in the museum id as props
   goToListView(id) {
     Actions.ListView(id);
   }
 
+  //getting all museums in our database
   async componentDidMount() {
     const { data } = await axios.get('https://living-art-capstone.herokuapp.com/api/museum/')
-    this.setState({ museums: data })
+    this.setState({ museums: data }) //setting the state to a list of all the museums
   }
 
   render() {
+    //displaying a list of all museums with their name and picture
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>

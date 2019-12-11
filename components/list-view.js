@@ -9,34 +9,35 @@ import {
   SafeAreaView,
   ScrollView
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
-// import DetailedView from "./detailed-view"
+import { Actions } from 'react-native-router-flux'; //built in function to redirect to another component
 
 export default class ListView extends Component {
   constructor(props) {
     super(props)
-    this.id = this.props.data
+    this.id = this.props.data //receiving props.data from the `main-view` where id is the museum id
     this.state = {
       allArtwork: []
     }
   }
 
   goToARView(museumId) {
-    Actions.ARView(museumId);
+    Actions.ARView(museumId); //opens ARScene.js
   }
 
   goToDetailedView(id) {
-    Actions.DetailedView(id)
+    Actions.DetailedView(id) //opens `detailed-view` for the selected painting
   }
 
+  //getting information about the selected museum from the database
   async componentDidMount() {
     const { data } = await axios.get(`https://living-art-capstone.herokuapp.com/api/museum/${this.id}/artwork`)
     this.setState({
-      allArtwork: data
+      allArtwork: data //this is an array of all the artwork in the selected museum
     })
   }
 
   render() {
+    // this renders a list of the current art at the selected museum
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
@@ -46,7 +47,6 @@ export default class ListView extends Component {
           </TouchableOpacity>
 
           <Text style={styles.header}>Animated Library:</Text>
-          {/* this renders a list of the current art at the selected museum */}
           {this.state.allArtwork.map(currentArt => {
             return(
               <View key={currentArt.id} style={styles.artCard}>

@@ -8,25 +8,27 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux'; //built in function to redirect to another component
 import Axios from 'axios';
 
 export default class DetailedView extends Component {
   constructor(props) {
     super(props)
-    this.id = this.props.data
+    this.id = this.props.data //receiving props.data from `list-view`
     this.state = {
       currentArt: {},
     }
   }
 
+  //getting information about the selected art piece from the database
   async componentDidMount() {
     const { data } = await Axios.get(`https://living-art-capstone.herokuapp.com/api/artwork/${this.id}`)
     this.setState({
-      currentArt: data
+      currentArt: data //setting the state to contain the data on the artpiece
     })
   }
 
+  //`video` in both these cases are mp4 files
   goToVRView(video) {
     Actions.VRView(video);
   }
@@ -36,6 +38,7 @@ export default class DetailedView extends Component {
   }
 
   render() {
+    //displaying information about the selected painting
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
