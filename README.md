@@ -8,6 +8,8 @@ Users can select from any of our active museums and view our animated library wh
 
 Users with a VR headset can also choose from a standard VR view or the VR 360 view to have a more immersive art viewing experience.
 
+View the video presentation here: https://youtu.be/FZWfWnc7Brg
+
 ## Get started
 
 Because our app is not yet available in the app store, to use our app, users must install and download Viro Media to their smartphone device and use the testbed.
